@@ -440,8 +440,8 @@ public class NewJFrame extends javax.swing.JFrame
                   .addComponent(txtHighestElev, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addGroup(siteInfoDialogLayout.createSequentialGroup()
                   .addGap(10, 10, 10)
-                  .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addGap(80, 80, 80)
+                  .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(53, 53, 53)
                   .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addGap(80, 80, 80)
                   .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -497,25 +497,25 @@ public class NewJFrame extends javax.swing.JFrame
                   .addGap(13, 13, 13))
                .addGroup(siteInfoDialogLayout.createSequentialGroup()
                   .addGroup(siteInfoDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(txtHabitat, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addGap(10, 10, 10)
-                  .addGroup(siteInfoDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(txtAreaSampled, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addGap(10, 10, 10)
-                  .addGroup(siteInfoDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                      .addGroup(siteInfoDialogLayout.createSequentialGroup()
-                        .addComponent(txtQuarterSection, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(190, Short.MAX_VALUE))))
-               .addGroup(siteInfoDialogLayout.createSequentialGroup()
-                  .addComponent(txtCommonName, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addGap(10, 10, 10)
-                  .addComponent(txtCounty, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addGap(10, 10, 10)
-                  .addComponent(txtSection, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addContainerGap())))
+                        .addGroup(siteInfoDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                           .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addComponent(txtHabitat, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(siteInfoDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                           .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addComponent(txtAreaSampled, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addGroup(siteInfoDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                           .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addComponent(txtQuarterSection, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                     .addGroup(siteInfoDialogLayout.createSequentialGroup()
+                        .addComponent(txtCommonName, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtCounty, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtSection, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                  .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
       );
       siteInfoDialogLayout.setVerticalGroup(
          siteInfoDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -867,7 +867,7 @@ public class NewJFrame extends javax.swing.JFrame
             .addContainerGap()
             .addGroup(deleteSeriesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                .addComponent(jLabel43, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-               .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE))
+               .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 142, Short.MAX_VALUE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(deleteSeriesDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                .addComponent(deleteSeriesBeginTextBox, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
@@ -1173,7 +1173,7 @@ public class NewJFrame extends javax.swing.JFrame
          }
       });
       getContentPane().add(utilBtn);
-      utilBtn.setBounds(10, 11, 290, 23);
+      utilBtn.setBounds(10, 11, 290, 25);
       utilBtn.getAccessibleContext().setAccessibleName("utilitiesBtn");
 
       newDataBtn.setText("Set up new data set");
@@ -1185,7 +1185,7 @@ public class NewJFrame extends javax.swing.JFrame
          }
       });
       getContentPane().add(newDataBtn);
-      newDataBtn.setBounds(10, 45, 290, 23);
+      newDataBtn.setBounds(10, 45, 290, 25);
       newDataBtn.getAccessibleContext().setAccessibleName("newDataBtn");
 
       importBtn.setText("Import Data");
@@ -1197,7 +1197,7 @@ public class NewJFrame extends javax.swing.JFrame
          }
       });
       getContentPane().add(importBtn);
-      importBtn.setBounds(10, 80, 290, 23);
+      importBtn.setBounds(10, 80, 290, 25);
       importBtn.getAccessibleContext().setAccessibleName("importDataBtn");
 
       changeSettingBtn.setText("Change settings in data set");
@@ -1209,7 +1209,7 @@ public class NewJFrame extends javax.swing.JFrame
          }
       });
       getContentPane().add(changeSettingBtn);
-      changeSettingBtn.setBounds(10, 115, 290, 23);
+      changeSettingBtn.setBounds(10, 115, 290, 25);
 
       fileNameTextField.setText("Provide a file name for the new file here");
       getContentPane().add(fileNameTextField);
@@ -1232,7 +1232,7 @@ public class NewJFrame extends javax.swing.JFrame
          }
       });
       getContentPane().add(fireHistoryBtn);
-      fireHistoryBtn.setBounds(10, 310, 290, 23);
+      fireHistoryBtn.setBounds(10, 310, 290, 25);
 
       siteInfoBtn.setText("Edit site info here");
       siteInfoBtn.addActionListener(new java.awt.event.ActionListener()
@@ -1243,7 +1243,7 @@ public class NewJFrame extends javax.swing.JFrame
          }
       });
       getContentPane().add(siteInfoBtn);
-      siteInfoBtn.setBounds(10, 340, 290, 23);
+      siteInfoBtn.setBounds(10, 340, 290, 25);
 
       saveBtn.setText("Save");
       saveBtn.addActionListener(new java.awt.event.ActionListener()
@@ -1254,7 +1254,7 @@ public class NewJFrame extends javax.swing.JFrame
          }
       });
       getContentPane().add(saveBtn);
-      saveBtn.setBounds(10, 370, 290, 23);
+      saveBtn.setBounds(10, 370, 290, 25);
 
       jLabel51.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
       jLabel51.setText("Enter Beginning Year");

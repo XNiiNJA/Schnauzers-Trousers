@@ -11,10 +11,11 @@ package se3860_secondgui;
  */
 public class HomeGui extends javax.swing.JFrame
 {
-
-   /**
-    * Creates new form HomeGui
-    */
+   private String[] siteInfo;
+   private String fileName;
+   int startDate, endDate, sampleNum, IDlen;
+   char sampleId[][];
+   char dataInfo[][];
    public HomeGui()
    {
       initComponents();
@@ -124,7 +125,7 @@ public class HomeGui extends javax.swing.JFrame
       txtLatitude = new javax.swing.JTextField();
       jLabel61 = new javax.swing.JLabel();
       jLabel62 = new javax.swing.JLabel();
-      txtLongtitude = new javax.swing.JTextField();
+      txtLongitude = new javax.swing.JTextField();
       jLabel63 = new javax.swing.JLabel();
       jLabel64 = new javax.swing.JLabel();
       btnSave = new javax.swing.JButton();
@@ -132,9 +133,11 @@ public class HomeGui extends javax.swing.JFrame
       jSeparator1 = new javax.swing.JSeparator();
       jSeparator2 = new javax.swing.JSeparator();
       jSeparator3 = new javax.swing.JSeparator();
+      txtCollectionDate = new javax.swing.JTextField();
+      jLabel73 = new javax.swing.JLabel();
+      jLabel74 = new javax.swing.JLabel();
       fireHistoryPanel = new javax.swing.JPanel();
       jLabel27 = new javax.swing.JLabel();
-      cmbSampleID = new javax.swing.JComboBox();
       jScrollPane4 = new javax.swing.JScrollPane();
       dataEntryDataList = new javax.swing.JList();
       jLabel65 = new javax.swing.JLabel();
@@ -144,18 +147,23 @@ public class HomeGui extends javax.swing.JFrame
       cmbNewValue = new javax.swing.JComboBox();
       jLabel28 = new javax.swing.JLabel();
       btnFillFifty = new javax.swing.JButton();
+      jButton1 = new javax.swing.JButton();
+      jTextField1 = new javax.swing.JTextField();
+      jButton2 = new javax.swing.JButton();
+      jComboBox1 = new javax.swing.JComboBox();
+      jButton3 = new javax.swing.JButton();
       dataSettingsPanel = new javax.swing.JPanel();
       jLabel67 = new javax.swing.JLabel();
-      firstYearTextField = new javax.swing.JTextField();
-      sampleIDLengthTextField = new javax.swing.JTextField();
-      lastYearTextField1 = new javax.swing.JTextField();
-      numberOfSamplesTextField = new javax.swing.JTextField();
+      txtFirstYear = new javax.swing.JTextField();
+      txtSampleIDLength = new javax.swing.JTextField();
+      txtLastYear = new javax.swing.JTextField();
+      txtNumberOfSamples = new javax.swing.JTextField();
       cancelBtn = new javax.swing.JButton();
       saveDataSetBtn1 = new javax.swing.JButton();
       jLabel68 = new javax.swing.JLabel();
       jLabel69 = new javax.swing.JLabel();
       jLabel70 = new javax.swing.JLabel();
-      sampleIDLengthTextField1 = new javax.swing.JTextField();
+      txtFileName = new javax.swing.JTextField();
       jLabel71 = new javax.swing.JLabel();
       jMenuBar1 = new javax.swing.JMenuBar();
       jMenu1 = new javax.swing.JMenu();
@@ -175,7 +183,7 @@ public class HomeGui extends javax.swing.JFrame
          .addGroup(homePanelLayout.createSequentialGroup()
             .addContainerGap()
             .addComponent(jLabel72)
-            .addContainerGap(733, Short.MAX_VALUE))
+            .addContainerGap(921, Short.MAX_VALUE))
       );
       homePanelLayout.setVerticalGroup(
          homePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -351,8 +359,22 @@ public class HomeGui extends javax.swing.JFrame
       jLabel64.setText("Longtitude");
 
       btnSave.setText("Save");
+      btnSave.addActionListener(new java.awt.event.ActionListener()
+      {
+         public void actionPerformed(java.awt.event.ActionEvent evt)
+         {
+            btnSaveActionPerformed(evt);
+         }
+      });
 
       btnDeleteAll.setText("Delete All");
+      btnDeleteAll.addActionListener(new java.awt.event.ActionListener()
+      {
+         public void actionPerformed(java.awt.event.ActionEvent evt)
+         {
+            btnDeleteAllActionPerformed(evt);
+         }
+      });
 
       jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
       jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -362,6 +384,11 @@ public class HomeGui extends javax.swing.JFrame
 
       jSeparator3.setForeground(new java.awt.Color(204, 204, 204));
       jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+
+      jLabel73.setText("Collection Date");
+
+      jLabel74.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
+      jLabel74.setText("* Max 70 Characters");
 
       javax.swing.GroupLayout siteInfoPanelLayout = new javax.swing.GroupLayout(siteInfoPanel);
       siteInfoPanel.setLayout(siteInfoPanelLayout);
@@ -454,31 +481,34 @@ public class HomeGui extends javax.swing.JFrame
             .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(50, 50, 50)
             .addGroup(siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(jLabel53)
-               .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(txtLowestElevation, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(jLabel51)
-               .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(txtHighestElev, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(jLabel49)
-               .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(txtSlope, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(jLabel47)
-               .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(txtAspect, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(jLabel45)
-               .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(txtUTMEasting, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(jLabel43)
-               .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(txtUTMNorthing, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addGroup(siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                  .addComponent(jLabel53)
+                  .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(txtLowestElevation, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                  .addComponent(jLabel51)
+                  .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(txtHighestElev, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                  .addComponent(jLabel49)
+                  .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(txtSlope, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                  .addComponent(jLabel47)
+                  .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(txtAspect, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                  .addComponent(jLabel45)
+                  .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(txtUTMEasting, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                  .addComponent(jLabel43)
+                  .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(txtUTMNorthing, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                   .addComponent(jLabel63)
                   .addComponent(jLabel64, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(txtLongtitude, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(txtLongitude, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                   .addGroup(siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                      .addComponent(btnDeleteAll, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                     .addComponent(btnSave, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                     .addComponent(btnSave, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                  .addComponent(txtCollectionDate))
+               .addComponent(jLabel73)
+               .addComponent(jLabel74))
             .addContainerGap())
       );
       siteInfoPanelLayout.setVerticalGroup(
@@ -486,6 +516,12 @@ public class HomeGui extends javax.swing.JFrame
          .addGroup(siteInfoPanelLayout.createSequentialGroup()
             .addContainerGap()
             .addGroup(siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addGroup(siteInfoPanelLayout.createSequentialGroup()
+                  .addGroup(siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
+                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
+                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addGap(0, 0, Short.MAX_VALUE))
                .addGroup(siteInfoPanelLayout.createSequentialGroup()
                   .addGroup(siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                      .addGroup(siteInfoPanelLayout.createSequentialGroup()
@@ -615,9 +651,9 @@ public class HomeGui extends javax.swing.JFrame
                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                               .addComponent(jLabel63)
                               .addGap(5, 5, 5)
-                              .addComponent(txtLongtitude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                              .addComponent(txtLongitude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                            .addGroup(siteInfoPanelLayout.createSequentialGroup()
                               .addComponent(jLabel58)
                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -636,11 +672,12 @@ public class HomeGui extends javax.swing.JFrame
                               .addComponent(jLabel61)
                               .addGap(5, 5, 5)
                               .addComponent(txtLatitude, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                           .addGroup(siteInfoPanelLayout.createSequentialGroup()
-                              .addGap(17, 17, 17)
-                              .addComponent(btnSave)
+                           .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, siteInfoPanelLayout.createSequentialGroup()
+                              .addComponent(jLabel73)
+                              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                              .addComponent(jLabel74)
                               .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                              .addComponent(btnDeleteAll))))
+                              .addComponent(txtCollectionDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                      .addGroup(siteInfoPanelLayout.createSequentialGroup()
                         .addComponent(jLabel26)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -683,20 +720,16 @@ public class HomeGui extends javax.swing.JFrame
                         .addComponent(jLabel37)
                         .addGap(5, 5, 5)
                         .addComponent(txtCounty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                  .addContainerGap(35, Short.MAX_VALUE))
-               .addGroup(siteInfoPanelLayout.createSequentialGroup()
-                  .addGroup(siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addGap(0, 0, Short.MAX_VALUE))))
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                  .addComponent(btnSave)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                  .addComponent(btnDeleteAll)
+                  .addGap(24, 24, 24))))
       );
 
       jTabbedPane1.addTab("Site Information", siteInfoPanel);
 
       jLabel27.setText("Please Choose Entry Sample ID:");
-
-      cmbSampleID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4" }));
 
       dataEntryDataList.setModel(new javax.swing.AbstractListModel()
       {
@@ -724,6 +757,16 @@ public class HomeGui extends javax.swing.JFrame
 
       btnFillFifty.setText("Fill 50 Years");
 
+      jButton1.setText("Enter Current year");
+
+      jTextField1.setText("Enter Sample Name...");
+
+      jButton2.setText("Create new Sample");
+
+      jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "sample 1", "sample 2", "sample 3", " " }));
+
+      jButton3.setText("Modify");
+
       javax.swing.GroupLayout fireHistoryPanelLayout = new javax.swing.GroupLayout(fireHistoryPanel);
       fireHistoryPanel.setLayout(fireHistoryPanelLayout);
       fireHistoryPanelLayout.setHorizontalGroup(
@@ -733,22 +776,31 @@ public class HomeGui extends javax.swing.JFrame
             .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addGroup(fireHistoryPanelLayout.createSequentialGroup()
                   .addComponent(jLabel27)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                  .addComponent(cmbSampleID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(jButton2)
+                  .addGap(74, 74, 74)
+                  .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(jButton3))
                .addGroup(fireHistoryPanelLayout.createSequentialGroup()
-                  .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addGroup(fireHistoryPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85)
-                        .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addGap(47, 47, 47)
+                  .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(108, 108, 108)
+                  .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addGroup(fireHistoryPanelLayout.createSequentialGroup()
+                  .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(18, 18, 18)
                   .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                      .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(cmbNewValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(jLabel28)
-                     .addComponent(btnFillFifty, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
-            .addContainerGap(92, Short.MAX_VALUE))
+                     .addGroup(fireHistoryPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel28)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                           .addComponent(jButton1)
+                           .addComponent(cmbNewValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addComponent(btnFillFifty, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+            .addContainerGap(309, Short.MAX_VALUE))
       );
       fireHistoryPanelLayout.setVerticalGroup(
          fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -756,8 +808,11 @@ public class HomeGui extends javax.swing.JFrame
             .addContainerGap()
             .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(jLabel27)
-               .addComponent(cmbSampleID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+               .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(jButton2)
+               .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(jButton3))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
             .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -766,10 +821,12 @@ public class HomeGui extends javax.swing.JFrame
                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addGroup(fireHistoryPanelLayout.createSequentialGroup()
                   .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addGap(119, 119, 119)
-                  .addComponent(jLabel28)
+                  .addGap(40, 40, 40)
+                  .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                     .addComponent(jLabel28)
+                     .addComponent(cmbNewValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(cmbNewValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addComponent(jButton1)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                   .addComponent(btnFillFifty)))
             .addContainerGap())
@@ -779,25 +836,32 @@ public class HomeGui extends javax.swing.JFrame
 
       jLabel67.setText("Sample ID length");
 
-      firstYearTextField.addActionListener(new java.awt.event.ActionListener()
+      txtFirstYear.addActionListener(new java.awt.event.ActionListener()
       {
          public void actionPerformed(java.awt.event.ActionEvent evt)
          {
-            firstYearTextFieldActionPerformed(evt);
+            txtFirstYearActionPerformed(evt);
          }
       });
 
-      numberOfSamplesTextField.addActionListener(new java.awt.event.ActionListener()
+      txtNumberOfSamples.addActionListener(new java.awt.event.ActionListener()
       {
          public void actionPerformed(java.awt.event.ActionEvent evt)
          {
-            numberOfSamplesTextFieldActionPerformed(evt);
+            txtNumberOfSamplesActionPerformed(evt);
          }
       });
 
       cancelBtn.setText("Cancel");
 
       saveDataSetBtn1.setText("Save");
+      saveDataSetBtn1.addActionListener(new java.awt.event.ActionListener()
+      {
+         public void actionPerformed(java.awt.event.ActionEvent evt)
+         {
+            saveDataSetBtn1ActionPerformed(evt);
+         }
+      });
 
       jLabel68.setText("First year of the data set");
 
@@ -814,13 +878,13 @@ public class HomeGui extends javax.swing.JFrame
          .addGroup(dataSettingsPanelLayout.createSequentialGroup()
             .addContainerGap()
             .addGroup(dataSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(sampleIDLengthTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-               .addComponent(numberOfSamplesTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-               .addComponent(lastYearTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
+               .addComponent(txtSampleIDLength, javax.swing.GroupLayout.Alignment.TRAILING)
+               .addComponent(txtNumberOfSamples, javax.swing.GroupLayout.Alignment.TRAILING)
+               .addComponent(txtLastYear, javax.swing.GroupLayout.Alignment.TRAILING)
                .addComponent(jLabel69, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-               .addComponent(firstYearTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-               .addComponent(jLabel68, javax.swing.GroupLayout.DEFAULT_SIZE, 854, Short.MAX_VALUE)
-               .addComponent(sampleIDLengthTextField1, javax.swing.GroupLayout.Alignment.TRAILING)
+               .addComponent(txtFirstYear, javax.swing.GroupLayout.Alignment.TRAILING)
+               .addComponent(jLabel68, javax.swing.GroupLayout.DEFAULT_SIZE, 1042, Short.MAX_VALUE)
+               .addComponent(txtFileName, javax.swing.GroupLayout.Alignment.TRAILING)
                .addGroup(dataSettingsPanelLayout.createSequentialGroup()
                   .addGroup(dataSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                      .addComponent(jLabel71)
@@ -839,23 +903,23 @@ public class HomeGui extends javax.swing.JFrame
             .addContainerGap()
             .addComponent(jLabel68)
             .addGap(4, 4, 4)
-            .addComponent(firstYearTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(txtFirstYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jLabel69)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(lastYearTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(txtLastYear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jLabel70)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(numberOfSamplesTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(txtNumberOfSamples, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jLabel67)
             .addGap(3, 3, 3)
-            .addComponent(sampleIDLengthTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(txtSampleIDLength, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jLabel71)
             .addGap(3, 3, 3)
-            .addComponent(sampleIDLengthTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(txtFileName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(18, 18, 18)
             .addGroup(dataSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(saveDataSetBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -888,25 +952,74 @@ public class HomeGui extends javax.swing.JFrame
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 642, javax.swing.GroupLayout.PREFERRED_SIZE)
+         .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING)
       );
 
       pack();
    }// </editor-fold>//GEN-END:initComponents
 
-   private void firstYearTextFieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_firstYearTextFieldActionPerformed
-   {//GEN-HEADEREND:event_firstYearTextFieldActionPerformed
+   private void txtFirstYearActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtFirstYearActionPerformed
+   {//GEN-HEADEREND:event_txtFirstYearActionPerformed
       // TODO add your handling code here:
-   }//GEN-LAST:event_firstYearTextFieldActionPerformed
+   }//GEN-LAST:event_txtFirstYearActionPerformed
 
-   private void numberOfSamplesTextFieldActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_numberOfSamplesTextFieldActionPerformed
-   {//GEN-HEADEREND:event_numberOfSamplesTextFieldActionPerformed
+   private void txtNumberOfSamplesActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_txtNumberOfSamplesActionPerformed
+   {//GEN-HEADEREND:event_txtNumberOfSamplesActionPerformed
       // TODO add your handling code here:
-   }//GEN-LAST:event_numberOfSamplesTextFieldActionPerformed
+   }//GEN-LAST:event_txtNumberOfSamplesActionPerformed
 
     private void txtSiteNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSiteNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSiteNameActionPerformed
+
+   private void btnSaveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSaveActionPerformed
+   {//GEN-HEADEREND:event_btnSaveActionPerformed
+      siteInfo = new String[29];
+      int count = 0;
+      siteInfo[count++] = txtSiteName.getText();
+      siteInfo[count++] = txtSiteCode.getText();
+      siteInfo[count++] = txtCollectionDate.getText(); 
+      siteInfo[count++] = txtCollectors.getText();
+      siteInfo[count++] = txtCrossDaters.getText();
+      siteInfo[count++] = txtSpeciesName.getText();
+      siteInfo[count++] = txtCommonName.getText();
+      siteInfo[count++] = txtHabitatType.getText();
+      siteInfo[count++] = txtCountry.getText();
+      siteInfo[count++] = txtState.getText();
+      siteInfo[count++] = txtCounty.getText();
+      siteInfo[count++] = txtParkMonument.getText();
+      siteInfo[count++] = txtNationalForest.getText();
+      siteInfo[count++] = txtRangerDistrict.getText();
+      siteInfo[count++] = txtTownship.getText();
+      siteInfo[count++] = txtRange.getText();
+      siteInfo[count++] = txtSection.getText();
+      siteInfo[count++] = txtQuarterSection.getText();
+      siteInfo[count++] = txtUTMEasting.getText();
+      siteInfo[count++] = txtUTMNorthing.getText();
+      siteInfo[count++] = txtLatitude.getText();
+      siteInfo[count++] = txtLongitude.getText();
+      siteInfo[count++] = txtTopographicMap.getText();
+      siteInfo[count++] = txtLowestElevation.getText();
+      siteInfo[count++] = txtHighestElev.getText();
+      siteInfo[count++] = txtSlope.getText();
+      siteInfo[count++] = txtAspect.getText();
+      siteInfo[count++] = txtAreaSampled.getText();
+      siteInfo[count] = txtSubstrateType.getText();
+   }//GEN-LAST:event_btnSaveActionPerformed
+
+   private void btnDeleteAllActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnDeleteAllActionPerformed
+   {//GEN-HEADEREND:event_btnDeleteAllActionPerformed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_btnDeleteAllActionPerformed
+
+   private void saveDataSetBtn1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_saveDataSetBtn1ActionPerformed
+   {//GEN-HEADEREND:event_saveDataSetBtn1ActionPerformed
+      startDate = Integer.parseInt(txtFirstYear.getText());
+      endDate = Integer.parseInt(txtLastYear.getText());
+      sampleNum = Integer.parseInt(txtNumberOfSamples.getText());
+      IDlen = Integer.parseInt(txtSampleIDLength.getText());
+      fileName = txtFileName.getText();
+   }//GEN-LAST:event_saveDataSetBtn1ActionPerformed
 
    /**
     * @param args the command line arguments
@@ -959,12 +1072,14 @@ public class HomeGui extends javax.swing.JFrame
    private javax.swing.JButton btnSave;
    private javax.swing.JButton cancelBtn;
    private javax.swing.JComboBox cmbNewValue;
-   private javax.swing.JComboBox cmbSampleID;
    private javax.swing.JList dataEntryDataList;
    private javax.swing.JPanel dataSettingsPanel;
    private javax.swing.JPanel fireHistoryPanel;
-   private javax.swing.JTextField firstYearTextField;
    private javax.swing.JPanel homePanel;
+   private javax.swing.JButton jButton1;
+   private javax.swing.JButton jButton2;
+   private javax.swing.JButton jButton3;
+   private javax.swing.JComboBox jComboBox1;
    private javax.swing.JLabel jLabel1;
    private javax.swing.JLabel jLabel10;
    private javax.swing.JLabel jLabel11;
@@ -1035,6 +1150,8 @@ public class HomeGui extends javax.swing.JFrame
    private javax.swing.JLabel jLabel70;
    private javax.swing.JLabel jLabel71;
    private javax.swing.JLabel jLabel72;
+   private javax.swing.JLabel jLabel73;
+   private javax.swing.JLabel jLabel74;
    private javax.swing.JLabel jLabel8;
    private javax.swing.JLabel jLabel9;
    private javax.swing.JMenu jMenu1;
@@ -1047,33 +1164,36 @@ public class HomeGui extends javax.swing.JFrame
    private javax.swing.JSeparator jSeparator3;
    private javax.swing.JTabbedPane jTabbedPane1;
    private javax.swing.JTextArea jTextArea1;
-   private javax.swing.JTextField lastYearTextField1;
+   private javax.swing.JTextField jTextField1;
    private javax.swing.JMenuItem mnuImportData;
    private javax.swing.JMenuItem mnuSaveFile;
-   private javax.swing.JTextField numberOfSamplesTextField;
-   private javax.swing.JTextField sampleIDLengthTextField;
-   private javax.swing.JTextField sampleIDLengthTextField1;
    private javax.swing.JButton saveDataSetBtn1;
    private javax.swing.JPanel siteInfoPanel;
    private javax.swing.JTextField txtAreaSampled;
    private javax.swing.JTextField txtAspect;
+   private javax.swing.JTextField txtCollectionDate;
    private javax.swing.JTextField txtCollectors;
    private javax.swing.JTextField txtCommonName;
    private javax.swing.JTextField txtCountry;
    private javax.swing.JTextField txtCounty;
    private javax.swing.JTextField txtCrossDaters;
    private javax.swing.JTextField txtEndYear;
+   private javax.swing.JTextField txtFileName;
+   private javax.swing.JTextField txtFirstYear;
    private javax.swing.JTextField txtHabitatType;
    private javax.swing.JTextField txtHighestElev;
+   private javax.swing.JTextField txtLastYear;
    private javax.swing.JTextField txtLatitude;
-   private javax.swing.JTextField txtLongtitude;
+   private javax.swing.JTextField txtLongitude;
    private javax.swing.JTextField txtLowestElevation;
    private javax.swing.JTextField txtNationalForest;
    private javax.swing.JTextField txtNumSamples;
+   private javax.swing.JTextField txtNumberOfSamples;
    private javax.swing.JTextField txtParkMonument;
    private javax.swing.JTextField txtQuarterSection;
    private javax.swing.JTextField txtRange;
    private javax.swing.JTextField txtRangerDistrict;
+   private javax.swing.JTextField txtSampleIDLength;
    private javax.swing.JTextField txtSection;
    private javax.swing.JTextField txtSiteCode;
    private javax.swing.JTextField txtSiteName;

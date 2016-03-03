@@ -55,6 +55,11 @@ public class DataHelper
    private int endYear = 0;
    private int sampleIDLength = 0;
    
+   /*
+   sets necessary site/year info, along with printing out all of
+   the site information and sample information in the FHX2 format 
+   to the specified file.
+   */
    public void printFile(int startYear, int endYear, int numberOfSamp, 
          int sampleIDLengths, String fileName, String siteInfo[], 
          char sampleIDInfo[][], char collectionDataInfo[][])
@@ -85,6 +90,9 @@ public class DataHelper
       }
    }
    
+   /*
+   sets all of the site information from an array of strings
+   */
    private void setSiteInformation( String[] siteInfo )
    {
       int counter = 0;
@@ -119,26 +127,41 @@ public class DataHelper
       substrateType = siteInfo[counter++];
    }
    
+   /*
+   sets the number of samples
+   */
    private void setNumberOfSamples( int numOfSamples )
    {
       numberOfSamples = numOfSamples;
    }
    
+   /*
+   sets the start year
+   */
    private void setStartYear( int startYearGui )
    {
       startYear = startYearGui;
    }
    
+   /*
+   sets the end year
+   */
    private void setEndYear ( int endYearGui )
    {
       endYear = endYearGui;
    }
    
+   /*
+   sets the sample's length
+   */
    private void setSampleIDLength ( int sampleIDLengthGui )
    {
       sampleIDLength = sampleIDLengthGui;
    }
    
+   /*
+   prints ot file all of the sample IDs in FHX2 format
+   */
    private void printSampleIDs(char sampleArray[][])
    {
       for (int i = 0; i < sampleIDLength; i++)
@@ -151,6 +174,9 @@ public class DataHelper
       }
    }
    
+   /*
+   sets the output file name
+   */
    private void setOutputFileName( String fileName )
    {
       outputFileName = fileName;

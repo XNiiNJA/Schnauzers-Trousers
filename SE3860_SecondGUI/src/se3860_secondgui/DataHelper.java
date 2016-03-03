@@ -9,6 +9,9 @@ package se3860_secondgui;
  *
  * @author Nathan
  */
+
+import java.io.*;
+
 public class DataHelper
 {
    private String nameOfSite;
@@ -16,7 +19,7 @@ public class DataHelper
    private String collectionDate;
    private String collectors;
    private String crossdaters;
-   private int numberOfSamples;
+   private int numberOfSamples = 0;
    private String speciesName;
    private String commonName;
    private String habitatType;
@@ -26,14 +29,14 @@ public class DataHelper
    private String parkMonument;
    private String nationalForest;
    private String rangerDistrict;
-   private String townShip;
+   private String township;
    private String range;
    private String section;
    private String quarterSection;
    private String utmEasting;
    private String utmNorthing;
    private String latitude;
-   private String longtitue;
+   private String longitude;
    private String topographicMap;
    private String lowestElev;
    private String highestElev;
@@ -41,45 +44,158 @@ public class DataHelper
    private String aspect;
    private String areaSampled;
    private String substrateType;
+   private String outputFileName;
+   
+   private PrintWriter prntW;
    
    private static final String FHX2FORMAT = "FHX2 FORMAT";
-   private static final int yearLength = 4;
    
-   private int startDate;
-   private int endDate;
-   private int sampleIDLength;
-   private char[][]arrayOfIDs;
-   private char[][]arrayOfData;
    
-   public void PopulateSampleIDArray(char[][] arrayOfIDsGui)
+   private int startYear = 0;
+   private int endYear = 0;
+   private int sampleIDLength = 0;
+   
+   public void printFile(int startYear, int endYear, int numberOfSamp, 
+         int sampleIDLengths, String fileName, String siteInfo[], 
+         char sampleIDInfo[][], char collectionDataInfo[][])
    {
-      arrayOfIDs = new char[sampleIDLength][numberOfSamples];
-      for (int i = 0; i < numberOfSamples; i++)
-         for (int j = 0; j < sampleIDLength; j++)
-         {
-            arrayOfIDs[i][j] = arrayOfIDsGui[i][j];
-         }
-   }
-   
-   public void PopulateDataArray(char[][] arrayOfDataGui)
-   {
-      int yearIncrement = startDate;
-      int yearCounter = 0;
-      arrayOfDataGui = new char[endDate - startDate][numberOfSamples + yearLength];
-      for (int i = 0; i < (endDate - startDate); i++)
+      setOutputFileName(fileName);
+      setSiteInformation(siteInfo);
+      setStartYear(startYear);
+      setEndYear(endYear);
+      setNumberOfSamples(numberOfSamp);
+      setSampleIDLength(sampleIDLengths);
+      try
       {
-         for (int j = 0; j < (numberOfSamples); j++)
-         {
-            arrayOfData[i][j] = arrayOfDataGui[i][j];
-         }
-         for (int k = numberOfSamples; k < yearLength; k++)
-         {
-            arrayOfData[i][k] = //yearIncrement.charAt(yearCounter);
-            //yearCounter++;        
-         }
-         yearIncrement++;
-         yearCounter = 0;
+         prntW = new PrintWriter(outputFileName);
+         printSiteData();
+         prntW.println("Begin comments : ");
+         prntW.println("End comments   : ");
+         prntW.println();
+         prntW.println(FHX2FORMAT);
+         prntW.println(startYear + " " + numberOfSamples 
+               + " " + sampleIDLength);
+         printSampleIDs(sampleIDInfo);
+         prntW.println();
+         printCollectedData(collectionDataInfo);
+      }
+      catch (Exception e)
+      {
+         System.out.println("Error: " + e);
       }
    }
    
+   private void setSiteInformation( String[] siteInfo )
+   {
+      int counter = 0;
+      nameOfSite = siteInfo[counter++];
+      siteCode = siteInfo[counter++];
+      collectionDate = siteInfo[counter++];
+      collectors = siteInfo[counter++];
+      crossdaters = siteInfo[counter++];
+      speciesName = siteInfo[counter++];
+      commonName = siteInfo[counter++];
+      habitatType = siteInfo[counter++];
+      country = siteInfo[counter++];
+      state = siteInfo[counter++];
+      county = siteInfo[counter++];
+      parkMonument = siteInfo[counter++];
+      nationalForest = siteInfo[counter++];
+      rangerDistrict = siteInfo[counter++];
+      township = siteInfo[counter++];
+      range = siteInfo[counter++];
+      section = siteInfo[counter++];
+      quarterSection = siteInfo[counter++];
+      utmEasting = siteInfo[counter++];
+      utmNorthing = siteInfo[counter++];
+      latitude = siteInfo[counter++];
+      longitude = siteInfo[counter++];
+      topographicMap = siteInfo[counter++];
+      lowestElev = siteInfo[counter++];
+      highestElev = siteInfo[counter++];
+      slope = siteInfo[counter++];
+      aspect = siteInfo[counter++];
+      areaSampled = siteInfo[counter++];
+      substrateType = siteInfo[counter++];
+   }
+   
+   private void setNumberOfSamples( int numOfSamples )
+   {
+      numberOfSamples = numOfSamples;
+   }
+   
+   private void setStartYear( int startYearGui )
+   {
+      startYear = startYearGui;
+   }
+   
+   private void setEndYear ( int endYearGui )
+   {
+      endYear = endYearGui;
+   }
+   
+   private void setSampleIDLength ( int sampleIDLengthGui )
+   {
+      sampleIDLength = sampleIDLengthGui;
+   }
+   
+   private void printSampleIDs(char sampleArray[][])
+   {
+      for (int i = 0; i < sampleIDLength; i++)
+      {
+         for (int j = 0; j < numberOfSamples; j++)
+         {
+            prntW.print(sampleArray[i][j]);
+         }
+         prntW.println();
+      }
+   }
+   
+   private void setOutputFileName( String fileName )
+   {
+      outputFileName = fileName;
+   }
+   
+   private void printCollectedData(char collectedData[][])
+   {
+      int counterYear = startYear;
+      for (int i = 0; i < (endYear - startYear); i++)
+         for (int j = 0; j < numberOfSamples; j++)
+         {
+            prntW.print(collectedData[i][j]);
+         }
+      prntW.println(" " + counterYear++);
+   }
+   
+   private void printSiteData()
+   {
+      prntW.println("Name of site   : " + nameOfSite);
+      prntW.println("Site Code      : " + siteCode);
+      prntW.println("Collection date: " + collectionDate);
+      prntW.println("Collectors     : " + collectors);
+      prntW.println("Crossdaters    : " + crossdaters);
+      prntW.println("Number samples : " + numberOfSamples);
+      prntW.println("Species name   : " + speciesName);
+      prntW.println("Common name    : " + commonName);
+      prntW.println("Habitat type   : " + habitatType);
+      prntW.println("Country        : " + country);
+      prntW.println("Park/Monument  : " + parkMonument);
+      prntW.println("National Forest: " + nationalForest);
+      prntW.println("Ranger district: " + rangerDistrict);
+      prntW.println("Township       : " + township);
+      prntW.println("Range          : " + range);
+      prntW.println("Section        : " + section);
+      prntW.println("Quarter section: " + quarterSection);
+      prntW.println("UTM easting    : " + utmEasting);
+      prntW.println("UTM northing   : " + utmNorthing);
+      prntW.println("Latitude       : " + latitude);
+      prntW.println("Longitude      : " + longitude);
+      prntW.println("Topographic map: " + topographicMap);
+      prntW.println("Lowest elev    : " + lowestElev);
+      prntW.println("Highest elev   : " + highestElev);
+      prntW.println("Slope          : " + slope);
+      prntW.println("Aspect         : " + aspect);
+      prntW.println("Area sampled   : " + areaSampled);
+      prntW.println("Substrate type : " + substrateType);
+   }
 }

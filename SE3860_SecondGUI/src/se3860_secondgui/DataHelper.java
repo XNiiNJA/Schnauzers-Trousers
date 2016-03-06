@@ -55,6 +55,9 @@ public class DataHelper
    private int endYear = 0;
    private int sampleIDLength = 0;
    
+   private char sampleIDInfo[][];
+   private char collectionData[][];
+   
    /*
    sets necessary site/year info, along with printing out all of
    the site information and sample information in the FHX2 format 
@@ -62,7 +65,7 @@ public class DataHelper
    */
    public void printFile(int startYear, int endYear, int numberOfSamp, 
          int sampleIDLengths, String fileName, String siteInfo[], 
-         char sampleIDInfo[][], char collectionDataInfo[][])
+         char sampleIDInfoGui[][], char collectionDataInfo[][])
    {
       setOutputFileName(fileName);
       setSiteInformation(siteInfo);
@@ -70,6 +73,8 @@ public class DataHelper
       setEndYear(endYear);
       setNumberOfSamples(numberOfSamp);
       setSampleIDLength(sampleIDLengths);
+      sampleIDInfo = sampleIDInfoGui;
+      collectionData = collectionDataInfo;
       try
       {
          prntW = new PrintWriter(outputFileName);
@@ -80,9 +85,9 @@ public class DataHelper
          prntW.println(FHX2FORMAT);
          prntW.println(startYear + " " + numberOfSamples 
                + " " + sampleIDLength);
-         printSampleIDs(sampleIDInfo);
+         printSampleIDs();
          prntW.println();
-         printCollectedData(collectionDataInfo);
+         printCollectedData();
       }
       catch (Exception e)
       {
@@ -162,13 +167,13 @@ public class DataHelper
    /*
    prints ot file all of the sample IDs in FHX2 format
    */
-   private void printSampleIDs(char sampleArray[][])
+   private void printSampleIDs()
    {
       for (int i = 0; i < sampleIDLength; i++)
       {
          for (int j = 0; j < numberOfSamples; j++)
          {
-            prntW.print(sampleArray[i][j]);
+            prntW.print(sampleIDInfo[i][j]);
          }
          prntW.println();
       }
@@ -182,13 +187,13 @@ public class DataHelper
       outputFileName = fileName;
    }
    
-   private void printCollectedData(char collectedData[][])
+   private void printCollectedData()
    {
       int counterYear = startYear;
       for (int i = 0; i < (endYear - startYear); i++)
          for (int j = 0; j < numberOfSamples; j++)
          {
-            prntW.print(collectedData[i][j]);
+            prntW.print(collectionData[i][j]);
          }
       prntW.println(" " + counterYear++);
    }

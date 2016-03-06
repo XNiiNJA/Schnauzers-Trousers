@@ -57,6 +57,7 @@ public class DataHelper
    
    private char sampleIDInfo[][];
    private char collectionData[][];
+   private String siteInfo[];
    
    /*
    sets necessary site/year info, along with printing out all of
@@ -130,6 +131,45 @@ public class DataHelper
       aspect = siteInfo[counter++];
       areaSampled = siteInfo[counter++];
       substrateType = siteInfo[counter++];
+   }
+   
+   private void createSiteInfoArray()
+   {
+      int counter = 0;
+      siteInfo[counter++] = nameOfSite;
+      siteInfo[counter++] = siteCode;
+      siteInfo[counter++] = collectionDate;
+      siteInfo[counter++] = collectors;
+      siteInfo[counter++] = crossdaters;
+      siteInfo[counter++] = speciesName;
+      siteInfo[counter++] = commonName;
+      siteInfo[counter++] = habitatType;
+      siteInfo[counter++] = country;
+      siteInfo[counter++] = state;
+      siteInfo[counter++] = county;
+      siteInfo[counter++] = parkMonument;
+      siteInfo[counter++] = nationalForest;
+      siteInfo[counter++] = rangerDistrict;
+      siteInfo[counter++] = township;
+      siteInfo[counter++] = range;
+      siteInfo[counter++] = section;
+      siteInfo[counter++] = quarterSection;
+      siteInfo[counter++] = utmEasting;
+      siteInfo[counter++] = utmNorthing;
+      siteInfo[counter++] = latitude;
+      siteInfo[counter++] = longitude;
+      siteInfo[counter++] = topographicMap;
+      siteInfo[counter++] = lowestElev;
+      siteInfo[counter++] = highestElev;
+      siteInfo[counter++] = slope;
+      siteInfo[counter++] = aspect;
+      siteInfo[counter++] = areaSampled;
+      siteInfo[counter++] = substrateType;
+   }
+   
+   public String[] getSiteInfo()
+   {
+      return siteInfo;
    }
    
    /*

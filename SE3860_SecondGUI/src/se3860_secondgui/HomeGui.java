@@ -5,6 +5,8 @@
  */
 package se3860_secondgui;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Nathan
@@ -138,8 +140,6 @@ public class HomeGui extends javax.swing.JFrame
       jLabel74 = new javax.swing.JLabel();
       fireHistoryPanel = new javax.swing.JPanel();
       jLabel27 = new javax.swing.JLabel();
-      jScrollPane4 = new javax.swing.JScrollPane();
-      dataEntryDataList = new javax.swing.JList();
       jLabel65 = new javax.swing.JLabel();
       jLabel66 = new javax.swing.JLabel();
       jScrollPane1 = new javax.swing.JScrollPane();
@@ -147,11 +147,12 @@ public class HomeGui extends javax.swing.JFrame
       cmbNewValue = new javax.swing.JComboBox();
       jLabel28 = new javax.swing.JLabel();
       btnFillFifty = new javax.swing.JButton();
-      jButton1 = new javax.swing.JButton();
       jTextField1 = new javax.swing.JTextField();
       jButton2 = new javax.swing.JButton();
       jComboBox1 = new javax.swing.JComboBox();
       jButton3 = new javax.swing.JButton();
+      jScrollPane2 = new javax.swing.JScrollPane();
+      fireHistoryTable = new javax.swing.JTable();
       dataSettingsPanel = new javax.swing.JPanel();
       jLabel67 = new javax.swing.JLabel();
       txtFirstYear = new javax.swing.JTextField();
@@ -190,7 +191,7 @@ public class HomeGui extends javax.swing.JFrame
          .addGroup(homePanelLayout.createSequentialGroup()
             .addContainerGap()
             .addComponent(jLabel72)
-            .addContainerGap(583, Short.MAX_VALUE))
+            .addContainerGap(806, Short.MAX_VALUE))
       );
 
       jTabbedPane1.addTab("Home", homePanel);
@@ -503,9 +504,8 @@ public class HomeGui extends javax.swing.JFrame
                   .addComponent(jLabel63)
                   .addComponent(jLabel64, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addComponent(txtLongitude, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                  .addGroup(siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                     .addComponent(btnDeleteAll, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                     .addComponent(btnSave, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                  .addComponent(btnDeleteAll, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                  .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                   .addComponent(txtCollectionDate))
                .addComponent(jLabel73)
                .addComponent(jLabel74))
@@ -720,7 +720,7 @@ public class HomeGui extends javax.swing.JFrame
                         .addComponent(jLabel37)
                         .addGap(5, 5, 5)
                         .addComponent(txtCounty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
                   .addComponent(btnSave)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                   .addComponent(btnDeleteAll)
@@ -730,14 +730,6 @@ public class HomeGui extends javax.swing.JFrame
       jTabbedPane1.addTab("Site Information", siteInfoPanel);
 
       jLabel27.setText("Please Choose Entry Sample ID:");
-
-      dataEntryDataList.setModel(new javax.swing.AbstractListModel()
-      {
-         String[] strings = { "1850                           Dormant season scar", "1851                           Late earlywood scar", "1852                           Late earlywood scar", "1853                           Late earlywood scar", "1854                           Null year", "...                                ..." };
-         public int getSize() { return strings.length; }
-         public Object getElementAt(int i) { return strings[i]; }
-      });
-      jScrollPane4.setViewportView(dataEntryDataList);
 
       jLabel65.setText("Year");
 
@@ -751,13 +743,18 @@ public class HomeGui extends javax.swing.JFrame
       jTextArea1.setText("To change the value stored for a given year, select  the desired year on the left and then\nchoose a new value from the dropdown box below. Selecting the \"Fill 50 Years\" Value will \nautomatically fill the next 50 years with the value currently selected in the dropdown box.");
       jScrollPane1.setViewportView(jTextArea1);
 
-      cmbNewValue.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Null year", "Pith year", "Bark year", "Inner ring", "Outer ring", "Dormant season scar", "Early earlywood scar", "Middle earlywood scar", "Late earlywood scar", "Undtermined season scar", "Early earlywood injury", "Middle earlywood injury", "Late earlywood injury", "Latewood injury", "undetermined season injury", "Recorder Year" }));
+      cmbNewValue.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Null year ( . ) ", "Pith year ( [ )", "Bark year ( ] )", "Inner ring ( { )", "Outer ring ( } )", "Dormant season scar ( D )", "Early earlywood scar ( E )", "Middle earlywood scar ( M )", "Late earlywood scar ( L )", "Undtermined season scar ( U )", "Early earlywood injury ( e )", "Middle earlywood injury ( m )", "Late earlywood injury ( l )", "Latewood injury ( a )", "undetermined season injury ( u )", "Recorder Year ( | )" }));
 
       jLabel28.setText("New Value");
 
-      btnFillFifty.setText("Fill 50 Years");
-
-      jButton1.setText("Enter Current year");
+      btnFillFifty.setText("Fill Selected Year(s)");
+      btnFillFifty.addActionListener(new java.awt.event.ActionListener()
+      {
+         public void actionPerformed(java.awt.event.ActionEvent evt)
+         {
+            btnFillFiftyActionPerformed(evt);
+         }
+      });
 
       jTextField1.setText("Enter Sample Name...");
 
@@ -767,39 +764,53 @@ public class HomeGui extends javax.swing.JFrame
 
       jButton3.setText("Modify");
 
+      fireHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
+         new Object [][]
+         {
+
+         },
+         new String []
+         {
+            "Year", "Value"
+         }
+      ));
+      jScrollPane2.setViewportView(fireHistoryTable);
+
       javax.swing.GroupLayout fireHistoryPanelLayout = new javax.swing.GroupLayout(fireHistoryPanel);
       fireHistoryPanel.setLayout(fireHistoryPanelLayout);
       fireHistoryPanelLayout.setHorizontalGroup(
          fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(fireHistoryPanelLayout.createSequentialGroup()
-            .addContainerGap()
             .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addGroup(fireHistoryPanelLayout.createSequentialGroup()
-                  .addComponent(jLabel27)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(jButton2)
-                  .addGap(74, 74, 74)
-                  .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(jButton3))
+                  .addContainerGap()
+                  .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addGroup(fireHistoryPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addGap(74, 74, 74)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3))
+                     .addGroup(fireHistoryPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(108, 108, 108)
+                        .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
                .addGroup(fireHistoryPanelLayout.createSequentialGroup()
-                  .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addGap(108, 108, 108)
-                  .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addGroup(fireHistoryPanelLayout.createSequentialGroup()
-                  .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addGap(18, 18, 18)
+                  .addGap(26, 26, 26)
+                  .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(46, 46, 46)
                   .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                      .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
                      .addGroup(fireHistoryPanelLayout.createSequentialGroup()
                         .addComponent(jLabel28)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                           .addComponent(jButton1)
-                           .addComponent(cmbNewValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                           .addComponent(btnFillFifty, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                           .addComponent(btnFillFifty, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addComponent(cmbNewValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
             .addContainerGap(309, Short.MAX_VALUE))
       );
       fireHistoryPanelLayout.setVerticalGroup(
@@ -812,13 +823,12 @@ public class HomeGui extends javax.swing.JFrame
                .addComponent(jButton2)
                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(jButton3))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGap(18, 18, 18)
             .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addGroup(fireHistoryPanelLayout.createSequentialGroup()
                   .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addGap(40, 40, 40)
@@ -826,11 +836,12 @@ public class HomeGui extends javax.swing.JFrame
                      .addComponent(jLabel28)
                      .addComponent(cmbNewValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(jButton1)
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(btnFillFifty)))
-            .addContainerGap())
+                  .addComponent(btnFillFifty))
+               .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(126, 126, 126))
       );
+
+      btnFillFifty.getAccessibleContext().setAccessibleName("Fill Selected Year(s)");
 
       jTabbedPane1.addTab("Fire History ", fireHistoryPanel);
 
@@ -1019,7 +1030,27 @@ public class HomeGui extends javax.swing.JFrame
       sampleNum = Integer.parseInt(txtNumberOfSamples.getText());
       IDlen = Integer.parseInt(txtSampleIDLength.getText());
       fileName = txtFileName.getText();
+      // ADDING ROWS TO FIRE HISTORY TABLE
+      String header[] = new String[] { "Year", "Values" };
+      DefaultTableModel dtm = new DefaultTableModel(0, 0);
+      dtm.setColumnIdentifiers(header);
+      fireHistoryTable.setModel(dtm);
+      for( int i = 0; i <= (endDate - startDate); i++ )
+      {
+         dtm.addRow(new String[]{ new Integer(startDate + i).toString(), 
+                                  "" } );
+      }
    }//GEN-LAST:event_saveDataSetBtn1ActionPerformed
+
+   private void btnFillFiftyActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFillFiftyActionPerformed
+   {//GEN-HEADEREND:event_btnFillFiftyActionPerformed
+      String value = new String(cmbNewValue.getSelectedItem().toString());
+      value = value.substring(value.lastIndexOf('(') + 1);
+      value = value.substring(1, 2);
+      int yearsToEdit[] = fireHistoryTable.getSelectedRows();
+      for( int i = yearsToEdit[0]; i <= yearsToEdit[yearsToEdit.length - 1]; i++)
+         fireHistoryTable.setValueAt( value, i, 1 );
+   }//GEN-LAST:event_btnFillFiftyActionPerformed
 
    /**
     * @param args the command line arguments
@@ -1072,11 +1103,10 @@ public class HomeGui extends javax.swing.JFrame
    private javax.swing.JButton btnSave;
    private javax.swing.JButton cancelBtn;
    private javax.swing.JComboBox cmbNewValue;
-   private javax.swing.JList dataEntryDataList;
    private javax.swing.JPanel dataSettingsPanel;
    private javax.swing.JPanel fireHistoryPanel;
+   private javax.swing.JTable fireHistoryTable;
    private javax.swing.JPanel homePanel;
-   private javax.swing.JButton jButton1;
    private javax.swing.JButton jButton2;
    private javax.swing.JButton jButton3;
    private javax.swing.JComboBox jComboBox1;
@@ -1158,7 +1188,7 @@ public class HomeGui extends javax.swing.JFrame
    private javax.swing.JMenu jMenu2;
    private javax.swing.JMenuBar jMenuBar1;
    private javax.swing.JScrollPane jScrollPane1;
-   private javax.swing.JScrollPane jScrollPane4;
+   private javax.swing.JScrollPane jScrollPane2;
    private javax.swing.JSeparator jSeparator1;
    private javax.swing.JSeparator jSeparator2;
    private javax.swing.JSeparator jSeparator3;

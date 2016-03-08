@@ -49,15 +49,18 @@ public class DataHelper
    private PrintWriter prntW;
    
    private static final String FHX2FORMAT = "FHX2 FORMAT";
-   
+   private static final int NUMBEROFLINESSITEINFO = 29;
    
    private int startYear = 0;
    private int endYear = 0;
    private int sampleIDLength = 0;
    
-   private char sampleIDInfo[][];
-   private char collectionData[][];
-   private String siteInfo[];
+   private static char sampleIDInfo[][];
+   private static char collectionData[][];
+   private static String siteInfo[];
+   
+   private FileReader fr;
+   private BufferedReader br;
    
    /*
    sets necessary site/year info, along with printing out all of
@@ -268,5 +271,119 @@ public class DataHelper
       prntW.println("Aspect         : " + aspect);
       prntW.println("Area sampled   : " + areaSampled);
       prntW.println("Substrate type : " + substrateType);
+   }
+   
+   private void ReadFileSiteInformation(BufferedReader textReader) throws Exception
+   {
+      siteInfo = new String[NUMBEROFLINESSITEINFO];
+      for( int i = 0; i < NUMBEROFLINESSITEINFO; i++)
+      {
+         String wholeString = textReader.readLine();
+         String[] parts = wholeString.split(": ");
+         String info;
+         if( parts.length > 1)
+         {
+            info = parts[1];
+            if( i != 5)
+               siteInfo[i] = info;
+            else
+            {
+               numberOfSamples = Integer.parseInt(info);
+            }
+         }
+      }
+   }
+   
+   private void ReadFromFHX2(String FilePath, BufferedReader textReader, FileReader fileRead) throws Exception
+   {
+      textReader.close();
+      fileRead.close();
+      fr = new FileReader(FilePath);
+      br = new BufferedReader(fr);
+      String testString = br.readLine();
+      while (!testString.equalsIgnoreCase(FHX2FORMAT))
+      {
+         testString = br.readLine();
+      }
+      ReadSampleInformation(br);
+      setSiteInformation(siteInfo);
+      ReadSampleIDs(br);
+      br.readLine();
+      ReadCollectionData(br);
+      br.close();
+      fr.close();
+   }
+   
+   private void ReadSampleInformation(BufferedReader textReader) throws Exception
+   {
+      String multiValue = textReader.readLine();
+      String []parts = multiValue.split(" ");
+      startYear = Integer.parseInt(parts[0]);
+      numberOfSamples = Integer.parseInt(parts[1]);
+      sampleIDLength = Integer.parseInt(parts[2]);
+   }
+   
+   private void ReadSampleIDs(BufferedReader textReader) throws Exception
+   {
+      sampleIDInfo = new char[sampleIDLength][numberOfSamples];
+      for (int i = 0; i < sampleIDLength; i++)
+      {
+         String charValue = textReader.readLine();
+         for (int j = 0; j < numberOfSamples; j++)
+         {
+            sampleIDInfo[i][j] = charValue.charAt(j);
+         }
+      }
+   }
+   
+   private void ReadCollectionData(BufferedReader textReader) throws Exception
+   {
+      collectionData = new char[(endYear - startYear)][numberOfSamples];
+      for (int i = 0; i < (endYear - startYear); i++)
+      {
+         String charValue = textReader.readLine();
+         for (int j = 0; j < numberOfSamples; j++)
+         {
+            collectionData[i][j] = charValue.charAt(j);
+         }
+      }
+   }
+   
+   private void FindEndYear(BufferedReader textReader) throws Exception
+   {
+      String lineRead = textReader.readLine();
+      String testString = textReader.readLine();
+      while (testString != null)
+      {
+         lineRead = testString;
+         testString = textReader.readLine();
+      }
+      String parts[] = lineRead.split(" ");
+      endYear = Integer.parseInt(parts[1]);
+   }
+   
+   public void readFromFile(String filePath)
+   {
+      try
+      {
+         FileReader fr = new FileReader(filePath);
+         BufferedReader br = new BufferedReader(fr);
+         ReadFileSiteInformation(br);
+         //createSiteInfoArray();
+         FindEndYear(br);
+         ReadFromFHX2(filePath, br, fr);
+      }
+      catch (Exception e)
+      {
+         System.out.println("Error: " + e);
+      }
+   }
+   
+   public static void main(String[] args)
+   {
+      DataHelper d = new DataHelper();
+      d.readFromFile("J:\\SE\\SE3860\\Schnauzers-Trousers\\trunk\\SE3860_SecondGUI\\uslcf001.fhx");
+      d.printFile(1150, 2001, 89, 5, "Newfile", siteInfo, sampleIDInfo, collectionData);
+      
    }
 }

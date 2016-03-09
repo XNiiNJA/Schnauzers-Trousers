@@ -49,7 +49,8 @@ public class DataHelper
    private PrintWriter prntW;
    
    private static final String FHX2FORMAT = "FHX2 FORMAT";
-   private static final int NUMBEROFLINESSITEINFO = 29;
+   private static final int NUMBEROFLINESSITEINFO = 30;
+   private static final int MAXCOMMENTLENGTH = 50;
    
    private int startYear = 0;
    private int endYear = 0;
@@ -58,6 +59,7 @@ public class DataHelper
    private static char sampleIDInfo[][];
    private static char collectionData[][];
    private static String siteInfo[];
+   private static String comments[];
    
    private FileReader fr;
    private BufferedReader br;
@@ -83,8 +85,7 @@ public class DataHelper
       {
          prntW = new PrintWriter(outputFileName);
          printSiteData();
-         prntW.println("Begin comments : ");
-         prntW.println("End comments   : ");
+         PrintComments();
          prntW.println();
          prntW.println(FHX2FORMAT);
          prntW.println(startYear + " " + numberOfSamples 
@@ -110,6 +111,7 @@ public class DataHelper
       collectionDate = siteInfo[counter++];
       collectors = siteInfo[counter++];
       crossdaters = siteInfo[counter++];
+      counter++;
       speciesName = siteInfo[counter++];
       commonName = siteInfo[counter++];
       habitatType = siteInfo[counter++];
@@ -234,11 +236,13 @@ public class DataHelper
    {
       int counterYear = startYear;
       for (int i = 0; i < (endYear - startYear); i++)
+      {
          for (int j = 0; j < numberOfSamples; j++)
          {
             prntW.print(collectionData[i][j]);
          }
-      prntW.println(" " + counterYear++);
+         prntW.println(" " + counterYear++);
+      }
    }
    
    private void printSiteData()
@@ -253,6 +257,8 @@ public class DataHelper
       prntW.println("Common name    : " + commonName);
       prntW.println("Habitat type   : " + habitatType);
       prntW.println("Country        : " + country);
+      prntW.println("State          : " + state);
+      prntW.println("County         : " + county);
       prntW.println("Park/Monument  : " + parkMonument);
       prntW.println("National Forest: " + nationalForest);
       prntW.println("Ranger district: " + rangerDistrict);
@@ -291,6 +297,8 @@ public class DataHelper
                numberOfSamples = Integer.parseInt(info);
             }
          }
+         else
+            siteInfo[i] = "";
       }
    }
    
@@ -362,6 +370,32 @@ public class DataHelper
       endYear = Integer.parseInt(parts[1]);
    }
    
+   private void ReadComments(BufferedReader textReader) throws Exception
+   {
+      int counter = 0;
+      comments = new String[MAXCOMMENTLENGTH];
+      String testString = textReader.readLine();
+      comments[counter++] = testString;
+      while (!testString.equalsIgnoreCase("End Comments   :"))
+      {
+         testString = textReader.readLine();
+         comments[counter++] = testString;
+      }
+      comments[counter] = "End Comments   :";
+   }
+   
+   private void PrintComments()
+   {
+      int counter = 0;
+      String testString = comments[counter];
+      while (!testString.equalsIgnoreCase("End Comments   :"))
+      {
+         prntW.println(comments[counter++]);
+         testString = comments[counter];
+      }
+      prntW.println(comments[counter]);
+   }
+   
    public void readFromFile(String filePath)
    {
       try
@@ -370,6 +404,7 @@ public class DataHelper
          BufferedReader br = new BufferedReader(fr);
          ReadFileSiteInformation(br);
          //createSiteInfoArray();
+         ReadComments(br);
          FindEndYear(br);
          ReadFromFHX2(filePath, br, fr);
       }
@@ -382,7 +417,7 @@ public class DataHelper
    public static void main(String[] args)
    {
       DataHelper d = new DataHelper();
-      d.readFromFile("J:\\SE\\SE3860\\Schnauzers-Trousers\\trunk\\SE3860_SecondGUI\\uslcf001.fhx");
+      d.readFromFile("C:\\Users\\Nathan\\Documents\\SE\\SE3860\\Schnauzers-Trousers\\trunk\\SE3860_SecondGUI\\uslcf001.fhx");
       d.printFile(1150, 2001, 89, 5, "Newfile", siteInfo, sampleIDInfo, collectionData);
       
    }

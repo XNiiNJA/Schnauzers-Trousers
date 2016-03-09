@@ -237,7 +237,7 @@ public class DataHelper
    private void printCollectedData()
    {
       int counterYear = startYear;
-      for (int i = 0; i <= ((endYear - startYear)); i++)
+      for (int i = 0; i < ((endYear - startYear)); i++)
       {
          for (int j = 0; j < numberOfSamples; j++)
          {
@@ -246,6 +246,9 @@ public class DataHelper
          prntW.println(" " + counterYear++);
          prntW.flush();
       }
+      for (int k = 0; k < numberOfSamples; k++)
+         prntW.print(collectionData[(endYear - startYear)][k]);
+      prntW.print(" " + counterYear++);
    }
    
    private void printSiteData()
@@ -420,7 +423,7 @@ public class DataHelper
    public static void main(String[] args)
    {
       DataHelper d = new DataHelper();
-      d.readFromFile("C:\\Users\\Nathan\\Documents\\SE\\SE3860\\Schnauzers-Trousers\\trunk\\SE3860_SecondGUI\\uslcf001.fhx");
+      d.readFromFile("J:\\SE\\SE3860\\Schnauzers-Trousers\\trunk\\SE3860_SecondGUI\\uslcf001.fhx");
       d.printFile(1150, 2001, 89, 5, "Newfile.fhx", siteInfo, sampleIDInfo, collectionData);
       
    }

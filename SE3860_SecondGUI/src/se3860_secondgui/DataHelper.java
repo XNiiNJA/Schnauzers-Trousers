@@ -421,7 +421,7 @@ public class DataHelper
    {
       DataHelper d = new DataHelper();
       d.readFromFile("C:\\Users\\Nathan\\Documents\\SE\\SE3860\\Schnauzers-Trousers\\trunk\\SE3860_SecondGUI\\uslcf001.fhx");
-      d.printFile(1150, 2001, 89, 5, "Newfile", siteInfo, sampleIDInfo, collectionData);
+      d.printFile(1150, 2001, 89, 5, "Newfile.fhx", siteInfo, sampleIDInfo, collectionData);
       
    }
 }

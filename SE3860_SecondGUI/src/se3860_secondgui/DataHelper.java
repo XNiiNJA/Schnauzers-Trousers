@@ -251,7 +251,7 @@ public class DataHelper
    private void printSiteData()
    {
       prntW.println("Name of site   : " + nameOfSite);
-      prntW.println("Site Code      : " + siteCode);
+      prntW.println("Site code      : " + siteCode);
       prntW.println("Collection date: " + collectionDate);
       prntW.println("Collectors     : " + collectors);
       prntW.println("Crossdaters    : " + crossdaters);

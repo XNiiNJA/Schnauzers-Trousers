@@ -92,7 +92,9 @@ public class DataHelper
                + " " + sampleIDLength);
          printSampleIDs();
          prntW.println();
+         prntW.flush();
          printCollectedData();
+         prntW.close();
       }
       catch (Exception e)
       {
@@ -235,13 +237,14 @@ public class DataHelper
    private void printCollectedData()
    {
       int counterYear = startYear;
-      for (int i = 0; i < (endYear - startYear); i++)
+      for (int i = 0; i <= ((endYear - startYear)); i++)
       {
          for (int j = 0; j < numberOfSamples; j++)
          {
             prntW.print(collectionData[i][j]);
          }
          prntW.println(" " + counterYear++);
+         prntW.flush();
       }
    }
    
@@ -346,8 +349,8 @@ public class DataHelper
    
    private void ReadCollectionData(BufferedReader textReader) throws Exception
    {
-      collectionData = new char[(endYear - startYear)][numberOfSamples];
-      for (int i = 0; i < (endYear - startYear); i++)
+      collectionData = new char[(endYear - startYear) + 1][numberOfSamples];
+      for (int i = 0; i <= (endYear - startYear); i++)
       {
          String charValue = textReader.readLine();
          for (int j = 0; j < numberOfSamples; j++)

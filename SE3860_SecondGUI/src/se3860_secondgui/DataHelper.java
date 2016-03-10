@@ -64,6 +64,8 @@ public class DataHelper
    private FileReader fr;
    private BufferedReader br;
    
+   public DataLocations dataLocs = new DataLocations(); 
+   
    /*
    sets necessary site/year info, along with printing out all of
    the site information and sample information in the FHX2 format 
@@ -143,34 +145,92 @@ public class DataHelper
    private void createSiteInfoArray()
    {
       int counter = 0;
+      
+      dataLocs.nameOfSite = counter;
       siteInfo[counter++] = nameOfSite;
+      
+      dataLocs.siteCode = counter;
       siteInfo[counter++] = siteCode;
+      
+      dataLocs.collectionDate = counter;
       siteInfo[counter++] = collectionDate;
+      
+      dataLocs.collectors = counter;
       siteInfo[counter++] = collectors;
+      
+      dataLocs.crossdaters = counter;
       siteInfo[counter++] = crossdaters;
+      
+      dataLocs.speciesName = counter;
       siteInfo[counter++] = speciesName;
+      
+      dataLocs.commonName = counter;
       siteInfo[counter++] = commonName;
+      
+      
+      dataLocs.habitatType = counter;
       siteInfo[counter++] = habitatType;
+      
+      
+      dataLocs.country = counter;
       siteInfo[counter++] = country;
+      
+      dataLocs.state = counter;
       siteInfo[counter++] = state;
+      
+      dataLocs.county = counter;
       siteInfo[counter++] = county;
+      
+      dataLocs.parkMonument = counter;
       siteInfo[counter++] = parkMonument;
+      
+      dataLocs.nationalForest = counter;
       siteInfo[counter++] = nationalForest;
+      
+      dataLocs.rangerDistrict = counter;
       siteInfo[counter++] = rangerDistrict;
+      
+      dataLocs.township = counter;
       siteInfo[counter++] = township;
+      
+      dataLocs.range = counter;
       siteInfo[counter++] = range;
+      
+      dataLocs.section = counter;
       siteInfo[counter++] = section;
+      
+      dataLocs.quarterSection = counter;
       siteInfo[counter++] = quarterSection;
+      
+      dataLocs.utmEasting = counter;
       siteInfo[counter++] = utmEasting;
+      
+      dataLocs.utmNorthing = counter;
       siteInfo[counter++] = utmNorthing;
+      
+      dataLocs.latitude = counter;
       siteInfo[counter++] = latitude;
+      
+      dataLocs.longitude = counter;
       siteInfo[counter++] = longitude;
+      
+      dataLocs.topographicMap = counter;
       siteInfo[counter++] = topographicMap;
+      
+      dataLocs.lowestElev = counter;
       siteInfo[counter++] = lowestElev;
+      
+      dataLocs.highestElev = counter;
       siteInfo[counter++] = highestElev;
+      
+      dataLocs.slope = counter;
       siteInfo[counter++] = slope;
       siteInfo[counter++] = aspect;
+      
+      dataLocs.aspect = counter;
       siteInfo[counter++] = areaSampled;
+      
+      dataLocs.substrateType = counter;
       siteInfo[counter++] = substrateType;
    }
    
@@ -418,6 +478,40 @@ public class DataHelper
       {
          System.out.println("Error: " + e);
       }
+   }
+   
+   public class DataLocations
+   {
+      int nameOfSite = 0;
+      int siteCode = 1;
+      int collectionDate = 2;
+      int collectors = 3;
+      int crossdaters = 4;
+      int numberofSamples = 5;
+      int speciesName = 6;
+      int commonName = 7;
+      int habitatType = 8;
+      int country = 9;
+      int state = 10;
+      int county = 11;
+      int parkMonument = 12;
+      int nationalForest = 13;
+      int rangerDistrict = 14;
+      int township = 15;
+      int range = 16;
+      int section = 17;
+      int quarterSection = 18;
+      int utmEasting = 19;
+      int utmNorthing = 20;
+      int latitude = 21;
+      int longitude = 22;
+      int topographicMap = 23;
+      int lowestElev = 24;
+      int highestElev = 25;
+      int slope = 26;
+      int aspect = 27;
+      int areaSampled = 28;
+      int substrateType = 29 ;
    }
    
    public static void main(String[] args)

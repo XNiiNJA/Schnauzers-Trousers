@@ -14,9 +14,9 @@ import java.awt.List;
  */
 public class SampleHandler 
 {
-   private Sample sampleList[];
-   private int idLength;
-   private int numSamples;
+   private final Sample sampleList[];
+   private final int idLength;
+   private final int numSamples;
    
    SampleHandler( int numOfSamples, int startYear, int lastYear, int idLen )
    {
@@ -26,6 +26,7 @@ public class SampleHandler
       for( int i = 0; i < numOfSamples; i++)
       {
          Sample s = new Sample(startYear, lastYear, i + 1);
+         sampleList[i] = s;
       }
    }
    
@@ -33,10 +34,20 @@ public class SampleHandler
    {
       for( int i = 0; i < numSamples; i++)
       {
-         if( sampleList[i].GetId() == idName  )
+         if( sampleList[i].GetId().equals(idName))
             return i;
       }
       return -1;
    }
    
+   public boolean changeId(String newID, String oldID)
+   {
+      if(oldID != null)
+      {
+         int index = Find(oldID);
+         sampleList[index].EditId(newID);
+         return true;
+      }
+      return false;
+   }
 }

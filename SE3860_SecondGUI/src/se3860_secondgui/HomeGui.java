@@ -29,6 +29,7 @@ public class HomeGui extends javax.swing.JFrame
    public HomeGui()
    {
       initComponents();
+      errorlbl1.setVisible(false);
    }
 
    /**
@@ -170,12 +171,13 @@ public class HomeGui extends javax.swing.JFrame
       cmbNewValue = new javax.swing.JComboBox();
       jLabel28 = new javax.swing.JLabel();
       btnFillFifty = new javax.swing.JButton();
-      jTextField1 = new javax.swing.JTextField();
-      jButton2 = new javax.swing.JButton();
+      txtSampleId = new javax.swing.JTextField();
+      btnchangeSampleID = new javax.swing.JButton();
       sampleListDropDown = new javax.swing.JComboBox();
       jButton3 = new javax.swing.JButton();
       jScrollPane2 = new javax.swing.JScrollPane();
       fireHistoryTable = new javax.swing.JTable();
+      errorlbl1 = new javax.swing.JLabel();
       jMenuBar1 = new javax.swing.JMenuBar();
       jMenu1 = new javax.swing.JMenu();
       mnuImportData = new javax.swing.JMenuItem();
@@ -875,9 +877,16 @@ public class HomeGui extends javax.swing.JFrame
          }
       });
 
-      jTextField1.setText("Enter Sample Name...");
+      txtSampleId.setText("Enter Sample Name...");
 
-      jButton2.setText("Create new Sample");
+      btnchangeSampleID.setText("Change Sample ID");
+      btnchangeSampleID.addActionListener(new java.awt.event.ActionListener()
+      {
+         public void actionPerformed(java.awt.event.ActionEvent evt)
+         {
+            btnchangeSampleIDActionPerformed(evt);
+         }
+      });
 
       sampleListDropDown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "sample 1", "sample 2", "sample 3", " " }));
 
@@ -895,6 +904,9 @@ public class HomeGui extends javax.swing.JFrame
       ));
       jScrollPane2.setViewportView(fireHistoryTable);
 
+      errorlbl1.setForeground(new java.awt.Color(255, 0, 0));
+      errorlbl1.setText("Error: No Sample Selected");
+
       javax.swing.GroupLayout fireHistoryPanelLayout = new javax.swing.GroupLayout(fireHistoryPanel);
       fireHistoryPanel.setLayout(fireHistoryPanelLayout);
       fireHistoryPanelLayout.setHorizontalGroup(
@@ -907,17 +919,20 @@ public class HomeGui extends javax.swing.JFrame
                      .addGroup(fireHistoryPanelLayout.createSequentialGroup()
                         .addComponent(jLabel27)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtSampleId, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
-                        .addGap(74, 74, 74)
-                        .addComponent(sampleListDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3))
+                        .addComponent(btnchangeSampleID))
                      .addGroup(fireHistoryPanelLayout.createSequentialGroup()
                         .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(108, 108, 108)
-                        .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                  .addGap(18, 18, 18)
+                  .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addGroup(fireHistoryPanelLayout.createSequentialGroup()
+                        .addComponent(sampleListDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3))
+                     .addComponent(errorlbl1)))
                .addGroup(fireHistoryPanelLayout.createSequentialGroup()
                   .addGap(26, 26, 26)
                   .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -938,15 +953,21 @@ public class HomeGui extends javax.swing.JFrame
             .addContainerGap()
             .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(jLabel27)
-               .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(jButton2)
+               .addComponent(txtSampleId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(btnchangeSampleID)
                .addComponent(sampleListDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(jButton3))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-               .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(18, 18, 18)
+            .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addGroup(fireHistoryPanelLayout.createSequentialGroup()
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                  .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                     .addComponent(jLabel65, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                     .addComponent(jLabel66, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addGap(18, 18, 18))
+               .addGroup(fireHistoryPanelLayout.createSequentialGroup()
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(errorlbl1)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                .addGroup(fireHistoryPanelLayout.createSequentialGroup()
                   .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1188,6 +1209,13 @@ public class HomeGui extends javax.swing.JFrame
         
     }//GEN-LAST:event_mnuImportDataActionPerformed
 
+   private void btnchangeSampleIDActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnchangeSampleIDActionPerformed
+   {//GEN-HEADEREND:event_btnchangeSampleIDActionPerformed
+      String Id = txtSampleId.getText();
+      errorlbl1.setVisible(!sh.changeId(Id, (String)sampleListDropDown.getSelectedItem()));
+
+   }//GEN-LAST:event_btnchangeSampleIDActionPerformed
+
    /**
     * @param args the command line arguments
     */
@@ -1237,13 +1265,14 @@ public class HomeGui extends javax.swing.JFrame
    private javax.swing.JButton btnDeleteAll;
    private javax.swing.JButton btnFillFifty;
    private javax.swing.JButton btnSave;
+   private javax.swing.JButton btnchangeSampleID;
    private javax.swing.JButton cancelBtn;
    private javax.swing.JComboBox cmbNewValue;
    private javax.swing.JPanel dataSettingsPanel;
+   private javax.swing.JLabel errorlbl1;
    private javax.swing.JPanel fireHistoryPanel;
    private javax.swing.JTable fireHistoryTable;
    private javax.swing.JPanel homePanel;
-   private javax.swing.JButton jButton2;
    private javax.swing.JButton jButton3;
    private javax.swing.JLabel jLabel1;
    private javax.swing.JLabel jLabel10;
@@ -1332,7 +1361,6 @@ public class HomeGui extends javax.swing.JFrame
    private javax.swing.JTabbedPane jTabbedPane1;
    private javax.swing.JTextArea jTextArea1;
    private javax.swing.JTextArea jTextArea2;
-   private javax.swing.JTextField jTextField1;
    private javax.swing.JMenuItem mnuImportData;
    private javax.swing.JMenuItem mnuSaveFile;
    private javax.swing.JComboBox sampleListDropDown;
@@ -1363,6 +1391,7 @@ public class HomeGui extends javax.swing.JFrame
    private javax.swing.JTextField txtRange;
    private javax.swing.JTextField txtRangerDistrict;
    private javax.swing.JTextField txtSampleIDLength;
+   private javax.swing.JTextField txtSampleId;
    private javax.swing.JTextField txtSection;
    private javax.swing.JTextField txtSiteCode;
    private javax.swing.JTextField txtSiteName;

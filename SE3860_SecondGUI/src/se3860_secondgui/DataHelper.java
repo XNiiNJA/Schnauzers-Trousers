@@ -45,6 +45,7 @@ public class DataHelper
    private String areaSampled;
    private String substrateType;
    private String outputFileName;
+   private String inputFileName;
    
    private PrintWriter prntW;
    
@@ -234,9 +235,29 @@ public class DataHelper
       siteInfo[counter++] = substrateType;
    }
    
+   public int getNumberOfSamples()
+   {
+       return numberOfSamples;
+   }
+   
+   public int getStartYear()
+   {
+       return startYear;
+   }
+   
+   public int getEndYear()
+   {
+       return endYear;
+   }
+   
    public String[] getSiteInfo()
    {
       return siteInfo;
+   }
+   
+   public int getSampleIDLength()
+   {
+       return sampleIDLength;
    }
    
    /*
@@ -462,17 +483,31 @@ public class DataHelper
       prntW.println(comments[counter]);
    }
    
+   private void setInputFileName(String filePath)
+   {
+       String [] parts = filePath.split("\\\\");
+       inputFileName = parts[parts.length - 1];
+   }
+   
+   public String getInputFileName()
+   {
+       return inputFileName;
+   }
+   
    public void readFromFile(String filePath)
    {
+       
       try
       {
          FileReader fr = new FileReader(filePath);
          BufferedReader br = new BufferedReader(fr);
+         setInputFileName(filePath);
          ReadFileSiteInformation(br);
          //createSiteInfoArray();
          ReadComments(br);
          FindEndYear(br);
          ReadFromFHX2(filePath, br, fr);
+         
       }
       catch (Exception e)
       {

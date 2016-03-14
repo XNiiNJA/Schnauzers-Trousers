@@ -1208,7 +1208,10 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jButton3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="errorlbl1" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="errorlbl2" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="errorlbl1" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -1243,6 +1246,8 @@
                           <Component id="sampleListDropDown" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="errorlbl1" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
@@ -1250,11 +1255,11 @@
                                   <Component id="jLabel65" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                                   <Component id="jLabel66" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="errorlbl1" min="-2" max="-2" attributes="0"/>
+                              <Component id="errorlbl2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -1425,6 +1430,17 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Error: No Sample Selected"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="errorlbl2">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="33" green="0" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Error: Name already in Set"/>
+              </Properties>
+              <AccessibilityProperties>
+                <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="errorlbl2"/>
+              </AccessibilityProperties>
             </Component>
           </SubComponents>
         </Container>

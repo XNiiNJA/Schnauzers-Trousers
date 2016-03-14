@@ -40,14 +40,31 @@ public class SampleHandler
       return -1;
    }
    
-   public boolean changeId(String newID, String oldID)
+   public int changeId(String newID, String oldID)
    {
-      if(oldID != null)
+        if(Find(newID) == -1)
+        {
+            if(oldID != null)
+            {
+                int index = Find(oldID);
+                sampleList[index].EditId(newID);
+                return 1;
+            }
+            return 0; 
+            
+        }
+        return -1;
+   }
+   
+   public String [] refreshIdnames()
+   {
+       String [] names =  new String[numSamples];
+           for( int i = 0; i < numSamples; i++)
       {
-         int index = Find(oldID);
-         sampleList[index].EditId(newID);
-         return true;
+         names[i] = sampleList[i].GetId();
       }
-      return false;
+      return names;
+       
+       
    }
 }

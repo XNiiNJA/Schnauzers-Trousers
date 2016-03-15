@@ -105,6 +105,11 @@ public class DataHelper
       }
    }
    
+   public char[][] getInfo()
+   {
+      return collectionData;
+   }
+   
    /*
    sets all of the site information from an array of strings
    */

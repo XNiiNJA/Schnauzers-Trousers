@@ -18,15 +18,25 @@ public class SampleHandler
    private final int idLength;
    private final int numSamples;
    
-   SampleHandler( int numOfSamples, int startYear, int lastYear, int idLen )
+   SampleHandler( int numOfSamples, int startYear, int lastYear, int idLen, 
+         boolean newSet, char [][] infoSet)
    {
       idLength = idLen;
       numSamples = numOfSamples;
       sampleList = new Sample[numOfSamples];
-      for( int i = 0; i < numOfSamples; i++)
+      char [] info;
+      if(newSet)
       {
-         Sample s = new Sample(startYear, lastYear, i + 1);
-         sampleList[i] = s;
+         info = new char[lastYear - startYear];
+         for( int i = 0; i < numOfSamples; i++)
+         {
+            Sample s = new Sample(info, Integer.toString(i + 1));
+            sampleList[i] = s;
+         }
+      }
+      else
+      {
+         
       }
    }
    

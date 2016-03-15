@@ -1128,7 +1128,7 @@ public class HomeGui extends javax.swing.JFrame
         }
         
         // SETUP SAMPLE LIST
-      sh = new SampleHandler(sampleNum, startDate, endDate, IDlen);
+      sh = new SampleHandler(sampleNum, startDate, endDate, IDlen, true);
       if (fileLoaded)
       {
          setSampleNamesFromFile();
@@ -1261,6 +1261,8 @@ public class HomeGui extends javax.swing.JFrame
             
             this.txtFileName.setText(d.getInputFileName());
             fileLoaded = true;
+            sh = new SampleHandler(sampleNum, startDate, endDate, IDlen, true,
+                  d.getInfo());
             saveDataSet();
         } 
 

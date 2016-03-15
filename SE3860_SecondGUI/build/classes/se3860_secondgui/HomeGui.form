@@ -1219,8 +1219,7 @@
                               <Component id="jScrollPane2" min="-2" pref="240" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jScrollPane1" min="-2" pref="441" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -1229,10 +1228,11 @@
                                           <Component id="saveDataBtn" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <Component id="jScrollPane1" min="-2" pref="478" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="158" max="32767" attributes="0"/>
+                      <EmptySpace pref="121" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1315,7 +1315,7 @@
                       <Font name="Tahoma" size="11" style="0"/>
                     </Property>
                     <Property name="rows" type="int" value="5"/>
-                    <Property name="text" type="java.lang.String" value="To change the value stored for a given year, select  the desired year on the left and then&#xa;choose a new value from the dropdown box below. Selecting the &quot;Fill 50 Years&quot; Value will &#xa;automatically fill the next 50 years with the value currently selected in the dropdown box."/>
+                    <Property name="text" type="java.lang.String" value="To change the value stored for a given year, select  the desired year(s) on the left and then&#xa;choose a new value from the dropdown box below. Selecting the &quot;Fill Selected Year(s)&quot; button will &#xa;automatically fill all selected year(s) values with the currently selected &quot;New Value&quot;."/>
                   </Properties>
                 </Component>
               </SubComponents>

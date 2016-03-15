@@ -862,7 +862,7 @@ public class HomeGui extends javax.swing.JFrame
       jTextArea1.setColumns(20);
       jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
       jTextArea1.setRows(5);
-      jTextArea1.setText("To change the value stored for a given year, select  the desired year on the left and then\nchoose a new value from the dropdown box below. Selecting the \"Fill 50 Years\" Value will \nautomatically fill the next 50 years with the value currently selected in the dropdown box.");
+      jTextArea1.setText("To change the value stored for a given year, select  the desired year(s) on the left and then\nchoose a new value from the dropdown box below. Selecting the \"Fill Selected Year(s)\" button will \nautomatically fill all selected year(s) values with the currently selected \"New Value\".");
       jScrollPane1.setViewportView(jTextArea1);
 
       cmbNewValue.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Null year ( . ) ", "Pith year ( [ )", "Bark year ( ] )", "Inner ring ( { )", "Outer ring ( } )", "Dormant season scar ( D )", "Early earlywood scar ( E )", "Middle earlywood scar ( M )", "Late earlywood scar ( L )", "Undtermined season scar ( U )", "Early earlywood injury ( e )", "Middle earlywood injury ( m )", "Late earlywood injury ( l )", "Latewood injury ( a )", "undetermined season injury ( u )", "Recorder Year ( | )" }));
@@ -958,15 +958,15 @@ public class HomeGui extends javax.swing.JFrame
                   .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                   .addGap(46, 46, 46)
                   .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
                      .addGroup(fireHistoryPanelLayout.createSequentialGroup()
                         .addComponent(jLabel28)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                            .addComponent(btnFillFifty, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                            .addComponent(cmbNewValue, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                           .addComponent(saveDataBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-            .addContainerGap(158, Short.MAX_VALUE))
+                           .addComponent(saveDataBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addContainerGap(121, Short.MAX_VALUE))
       );
       fireHistoryPanelLayout.setVerticalGroup(
          fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

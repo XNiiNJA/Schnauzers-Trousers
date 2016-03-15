@@ -288,7 +288,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel1" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
@@ -377,35 +377,34 @@
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="jSeparator3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel53" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel54" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
-                              <Component id="txtLowestElevation" alignment="0" pref="129" max="32767" attributes="0"/>
-                              <Component id="jLabel51" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel52" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
-                              <Component id="txtHighestElev" alignment="0" pref="129" max="32767" attributes="0"/>
-                              <Component id="jLabel49" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel50" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
-                              <Component id="txtSlope" alignment="0" pref="129" max="32767" attributes="0"/>
-                              <Component id="jLabel47" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel48" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
-                              <Component id="txtAspect" alignment="0" pref="129" max="32767" attributes="0"/>
-                              <Component id="jLabel45" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel46" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
-                              <Component id="txtUTMEasting" alignment="0" pref="129" max="32767" attributes="0"/>
-                              <Component id="jLabel43" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel44" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
-                              <Component id="txtUTMNorthing" alignment="0" pref="129" max="32767" attributes="0"/>
-                              <Component id="jLabel63" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel64" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
-                              <Component id="txtLongitude" alignment="0" pref="129" max="32767" attributes="0"/>
-                              <Component id="btnDeleteAll" alignment="0" pref="129" max="32767" attributes="0"/>
-                              <Component id="btnSave" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtCollectionDate" max="32767" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jLabel53" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel54" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
+                          <Component id="txtLowestElevation" alignment="0" pref="129" max="32767" attributes="0"/>
+                          <Component id="jLabel51" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel52" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
+                          <Component id="txtHighestElev" alignment="0" pref="129" max="32767" attributes="0"/>
+                          <Component id="jLabel49" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel50" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
+                          <Component id="txtSlope" alignment="0" pref="129" max="32767" attributes="0"/>
+                          <Component id="jLabel47" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel48" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
+                          <Component id="txtAspect" alignment="0" pref="129" max="32767" attributes="0"/>
+                          <Component id="jLabel45" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel46" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
+                          <Component id="txtUTMEasting" alignment="0" pref="129" max="32767" attributes="0"/>
+                          <Component id="jLabel43" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel44" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
+                          <Component id="txtUTMNorthing" alignment="0" pref="129" max="32767" attributes="0"/>
+                          <Component id="jLabel63" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel64" alignment="0" min="-2" pref="118" max="-2" attributes="0"/>
+                          <Component id="txtLongitude" alignment="0" pref="129" max="32767" attributes="0"/>
+                          <Component id="btnDeleteAll" alignment="0" pref="129" max="32767" attributes="0"/>
+                          <Component id="btnSave" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtCollectionDate" max="32767" attributes="0"/>
                           <Component id="jLabel73" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel74" min="-2" max="-2" attributes="0"/>
+                          <Component id="resetDataFieldsBtn" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -634,8 +633,10 @@
                                       <Component id="txtCounty" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="161" max="32767" attributes="0"/>
+                              <EmptySpace pref="127" max="32767" attributes="0"/>
                               <Component id="btnSave" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="resetDataFieldsBtn" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="btnDeleteAll" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -1168,6 +1169,14 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="* Max 70 Characters"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="resetDataFieldsBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Reset From File"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resetDataFieldsBtnActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

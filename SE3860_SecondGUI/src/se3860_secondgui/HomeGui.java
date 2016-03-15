@@ -166,6 +166,7 @@ public class HomeGui extends javax.swing.JFrame
       txtCollectionDate = new javax.swing.JTextField();
       jLabel73 = new javax.swing.JLabel();
       jLabel74 = new javax.swing.JLabel();
+      resetDataFieldsBtn = new javax.swing.JButton();
       fireHistoryPanel = new javax.swing.JPanel();
       jLabel27 = new javax.swing.JLabel();
       jScrollPane1 = new javax.swing.JScrollPane();
@@ -518,6 +519,15 @@ public class HomeGui extends javax.swing.JFrame
       jLabel74.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
       jLabel74.setText("* Max 70 Characters");
 
+      resetDataFieldsBtn.setText("Reset From File");
+      resetDataFieldsBtn.addActionListener(new java.awt.event.ActionListener()
+      {
+         public void actionPerformed(java.awt.event.ActionEvent evt)
+         {
+            resetDataFieldsBtnActionPerformed(evt);
+         }
+      });
+
       javax.swing.GroupLayout siteInfoPanelLayout = new javax.swing.GroupLayout(siteInfoPanel);
       siteInfoPanel.setLayout(siteInfoPanelLayout);
       siteInfoPanelLayout.setHorizontalGroup(
@@ -608,34 +618,34 @@ public class HomeGui extends javax.swing.JFrame
             .addGap(50, 50, 50)
             .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(50, 50, 50)
-            .addGroup(siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                  .addComponent(jLabel53)
-                  .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(txtLowestElevation, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                  .addComponent(jLabel51)
-                  .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(txtHighestElev, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                  .addComponent(jLabel49)
-                  .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(txtSlope, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                  .addComponent(jLabel47)
-                  .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(txtAspect, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                  .addComponent(jLabel45)
-                  .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(txtUTMEasting, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                  .addComponent(jLabel43)
-                  .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(txtUTMNorthing, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                  .addComponent(jLabel63)
-                  .addComponent(jLabel64, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addComponent(txtLongitude, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                  .addComponent(btnDeleteAll, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                  .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                  .addComponent(txtCollectionDate))
+            .addGroup(siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+               .addComponent(jLabel53)
+               .addComponent(jLabel54, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(txtLowestElevation, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+               .addComponent(jLabel51)
+               .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(txtHighestElev, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+               .addComponent(jLabel49)
+               .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(txtSlope, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+               .addComponent(jLabel47)
+               .addComponent(jLabel48, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(txtAspect, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+               .addComponent(jLabel45)
+               .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(txtUTMEasting, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+               .addComponent(jLabel43)
+               .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(txtUTMNorthing, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+               .addComponent(jLabel63)
+               .addComponent(jLabel64, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(txtLongitude, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+               .addComponent(btnDeleteAll, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+               .addComponent(btnSave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+               .addComponent(txtCollectionDate)
                .addComponent(jLabel73)
-               .addComponent(jLabel74))
+               .addComponent(jLabel74)
+               .addComponent(resetDataFieldsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
       );
       siteInfoPanelLayout.setVerticalGroup(
@@ -847,8 +857,10 @@ public class HomeGui extends javax.swing.JFrame
                         .addComponent(jLabel37)
                         .addGap(5, 5, 5)
                         .addComponent(txtCounty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
                   .addComponent(btnSave)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                  .addComponent(resetDataFieldsBtn)
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                   .addComponent(btnDeleteAll)
                   .addGap(24, 24, 24))))
@@ -1106,7 +1118,38 @@ public class HomeGui extends javax.swing.JFrame
 
    private void btnDeleteAllActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnDeleteAllActionPerformed
    {//GEN-HEADEREND:event_btnDeleteAllActionPerformed
-      // TODO add your handling code here:
+      txtSiteName.setText("");
+      txtSiteCode.setText("");
+      txtCollectionDate.setText("");
+      txtCollectors.setText("");
+      txtCrossDaters.setText("");
+      txtSpeciesName.setText("");
+      txtCommonName.setText("");
+      txtHabitatType.setText("");
+      txtCountry.setText("");
+      txtState.setText("");
+      txtCounty.setText("");
+      txtParkMonument.setText("");
+      txtNationalForest.setText("");
+      txtRangerDistrict.setText("");
+      txtTownship.setText("");
+      txtRange.setText("");
+      txtSection.setText("");
+      txtQuarterSection.setText("");
+      txtUTMEasting.setText("");
+      txtUTMNorthing.setText("");
+      txtLatitude.setText("");
+      txtLongitude.setText("");
+      txtTopographicMap.setText("");
+      txtLowestElevation.setText("");
+      txtHighestElev.setText("");
+      txtSlope.setText("");
+      txtAspect.setText("");
+      txtAreaSampled.setText("");
+      txtSubstrateType.setText("");
+      txtStartYear.setText("");
+      txtEndYear.setText("");
+      txtNumSamples.setText("");
    }//GEN-LAST:event_btnDeleteAllActionPerformed
 
    private void saveDataSet()
@@ -1300,6 +1343,79 @@ public class HomeGui extends javax.swing.JFrame
       
    }//GEN-LAST:event_modifyBtnActionPerformed
 
+   private void resetDataFieldsBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_resetDataFieldsBtnActionPerformed
+   {//GEN-HEADEREND:event_resetDataFieldsBtnActionPerformed
+      if (!fileLoaded)
+         return;   
+      String test[] = d.getSiteInfo();      
+      this.txtAreaSampled.setText(test[d.dataLocs.areaSampled]);
+      this.txtAspect.setText(test[d.dataLocs.aspect]);
+      this.txtCollectionDate.setText(test[d.dataLocs.collectionDate]);
+      this.txtCollectors.setText(test[d.dataLocs.collectors]);
+      this.txtCommonName.setText(test[d.dataLocs.commonName]);
+      this.txtCountry.setText(test[d.dataLocs.country]);
+      this.txtCounty.setText(test[d.dataLocs.county]);
+      this.txtCrossDaters.setText(test[d.dataLocs.crossdaters]); ;
+
+      this.txtHabitatType.setText(test[d.dataLocs.habitatType]);
+
+      this.txtHighestElev.setText(test[d.dataLocs.highestElev]);
+
+      this.txtLatitude.setText(test[d.dataLocs.latitude]);
+
+      this.txtLongitude.setText(test[d.dataLocs.longitude]);
+
+      this.txtLowestElevation.setText(test[d.dataLocs.lowestElev]);
+
+      this.txtSiteName.setText(test[d.dataLocs.nameOfSite]);
+
+      this.txtNationalForest.setText(test[d.dataLocs.nationalForest]);
+
+      this.txtNumSamples.setText(Integer.toString(d.getNumberOfSamples()));
+
+      this.txtParkMonument.setText(test[d.dataLocs.parkMonument]);
+
+      this.txtQuarterSection.setText(test[d.dataLocs.quarterSection]);
+
+      this.txtRange.setText(test[d.dataLocs.range]);
+
+      this.txtRangerDistrict.setText(test[d.dataLocs.rangerDistrict]);
+
+      this.txtSection.setText(test[d.dataLocs.section]);
+
+      this.txtSiteCode.setText(test[d.dataLocs.siteCode]);
+
+      this.txtSlope.setText(test[d.dataLocs.slope]);
+
+      this.txtSpeciesName.setText(test[d.dataLocs.speciesName]);
+
+      this.txtState.setText(test[d.dataLocs.state]);
+
+      this.txtSubstrateType.setText(test[d.dataLocs.substrateType]);
+
+      this.txtTopographicMap.setText(test[d.dataLocs.topographicMap]);
+
+      this.txtTownship.setText(test[d.dataLocs.township]);
+
+      this.txtUTMEasting.setText(test[d.dataLocs.utmEasting]);
+
+      this.txtUTMNorthing.setText(test[d.dataLocs.utmNorthing]);
+
+      this.txtStartYear.setText(Integer.toString(d.getStartYear()));
+
+      this.txtEndYear.setText(Integer.toString(d.getEndYear()));
+
+      this.txtFirstYear.setText(Integer.toString(d.getStartYear()));
+
+      this.txtLastYear.setText(Integer.toString(d.getEndYear()));
+
+      this.txtNumberOfSamples.setText(Integer.toString(d.getNumberOfSamples()));
+
+      this.txtSampleIDLength.setText(Integer.toString(d.getSampleIDLength()));
+
+      this.txtFileName.setText(d.getInputFileName());// TODO add your handling code here:
+   }//GEN-LAST:event_resetDataFieldsBtnActionPerformed
+
    /**
     * @param args the command line arguments
     */
@@ -1448,6 +1564,7 @@ public class HomeGui extends javax.swing.JFrame
    private javax.swing.JMenuItem mnuImportData;
    private javax.swing.JMenuItem mnuSaveFile;
    private javax.swing.JButton modifyBtn;
+   private javax.swing.JButton resetDataFieldsBtn;
    private javax.swing.JComboBox sampleListDropDown;
    private javax.swing.JButton saveDataBtn;
    private javax.swing.JButton saveDataSetBtn1;

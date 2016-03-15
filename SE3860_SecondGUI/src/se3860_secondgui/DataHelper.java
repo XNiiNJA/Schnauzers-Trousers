@@ -292,6 +292,16 @@ public class DataHelper
       sampleIDLength = sampleIDLengthGui;
    }
    
+   public char getSampleIDInfoAt(int i, int j)
+   {
+      return sampleIDInfo[i][j];
+   }
+   
+   public char[][] getSampleIDInfo()
+   {
+      return sampleIDInfo;
+   }
+   
    /*
    prints ot file all of the sample IDs in FHX2 format
    */

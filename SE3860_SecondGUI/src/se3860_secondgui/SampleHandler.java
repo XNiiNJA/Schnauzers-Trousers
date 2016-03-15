@@ -58,6 +58,19 @@ public class SampleHandler
         return -1;
    }
    
+   public void changeSampleNames(char[][] sampleIDNames)
+   {
+      char[] sampleID = new char[idLength];
+      for (int i = 0; i < numSamples; i++)
+      {
+         for (int j = 0; j < idLength; j++)
+         {
+            sampleID[j] = sampleIDNames[j][i];
+         }
+         sampleList[i].EditId(new String(sampleID));
+      }
+   }
+   
    public String [] refreshIdnames()
    {
        String [] names =  new String[numSamples];

@@ -24,6 +24,7 @@ public class HomeGui extends javax.swing.JFrame
    int startDate, endDate, sampleNum, IDlen;
    char sampleId[][];
    char dataInfo[][];
+   boolean fileLoaded = false;
    DataHelper d = new DataHelper();
    SampleHandler sh;
    
@@ -1128,12 +1129,35 @@ public class HomeGui extends javax.swing.JFrame
         
         // SETUP SAMPLE LIST
       sh = new SampleHandler(sampleNum, startDate, endDate, IDlen);
+      if (fileLoaded)
+      {
+         setSampleNamesFromFile();
+         sh.changeSampleNames(d.getSampleIDInfo());
+      }
+      else
+      {
+         Vector dropDownItems = new Vector();
+         for( int i = 0; i < sampleNum; i++)
+            dropDownItems.add( new Integer(i + 1).toString() );
+         final DefaultComboBoxModel model = new DefaultComboBoxModel(dropDownItems);
+         sampleListDropDown.setModel(model);  
+      }
+   }
+   
+   private void setSampleNamesFromFile()
+   {
+      char[] sampleID = new char[d.getSampleIDLength()];
       Vector dropDownItems = new Vector();
-      for( int i = 0; i < sampleNum; i++)
-         dropDownItems.add( new Integer(i + 1).toString() );
+      for (int i = 0; i < d.getNumberOfSamples(); i++)
+      {
+         for (int j = 0; j < d.getSampleIDLength(); j++)
+         {
+            sampleID[j] = d.getSampleIDInfoAt(j, i);
+         }
+         dropDownItems.add( new String(sampleID) );
+      }
       final DefaultComboBoxModel model = new DefaultComboBoxModel(dropDownItems);
       sampleListDropDown.setModel(model);
-
    }
    
    private void saveDataSetBtn1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_saveDataSetBtn1ActionPerformed
@@ -1236,6 +1260,7 @@ public class HomeGui extends javax.swing.JFrame
             this.txtSampleIDLength.setText(Integer.toString(d.getSampleIDLength()));
             
             this.txtFileName.setText(d.getInputFileName());
+            fileLoaded = true;
             saveDataSet();
         } 
 

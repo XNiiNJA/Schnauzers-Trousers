@@ -36,11 +36,13 @@ public class SampleHandler
       }
       else
       {
-         
+         for( int i = 0; i < numOfSamples; i++)
+         {
+            Sample s = new Sample(infoSet[i], Integer.toString(i + 1));
+            sampleList[i] = s;
+         }
       }
    }
-   
-   
    
    private int Find( String idName )
    {
@@ -88,8 +90,14 @@ public class SampleHandler
       {
          names[i] = sampleList[i].GetId();
       }
-      return names;
-       
-       
+      return names;   
+   }
+   
+   public char[] getSampleInfo(String Id)
+   {
+      int index = Find(Id);
+      if(index != -1)
+         return sampleList[index].getInfo();
+      return null;
    }
 }

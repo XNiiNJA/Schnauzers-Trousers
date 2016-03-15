@@ -20,7 +20,10 @@ public class Sample
    Sample(char [] info, String idName )
    {
       data = new char[info.length];
-      System.arraycopy(info, 0, data, 0, info.length);
+      for(int i = 0; i < info.length; i ++)
+      {
+         data[i] = info[i];
+      }
       id = idName;
    }
    

@@ -1061,7 +1061,7 @@ public class HomeGui extends javax.swing.JFrame
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 789, javax.swing.GroupLayout.PREFERRED_SIZE)
+         .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 789, Short.MAX_VALUE)
       );
 
       pack();
@@ -1164,14 +1164,14 @@ public class HomeGui extends javax.swing.JFrame
         DefaultTableModel dtm = new DefaultTableModel(0, 0);
         dtm.setColumnIdentifiers(header);
         fireHistoryTable.setModel(dtm);
-        for( int i = 0; i <= (endDate - startDate); i++ )
-        {
+         for( int i = 0; i <= (endDate - startDate); i++ )
+         {
            dtm.addRow(new String[]{ new Integer(startDate + i).toString(), 
                                     "" } );
-        }
-        
+         }
+
         // SETUP SAMPLE LIST
-      sh = new SampleHandler(sampleNum, startDate, endDate, IDlen, true);
+      sh = new SampleHandler(sampleNum, startDate, endDate, IDlen, true, null);
       if (fileLoaded)
       {
          setSampleNamesFromFile();
@@ -1304,7 +1304,7 @@ public class HomeGui extends javax.swing.JFrame
             
             this.txtFileName.setText(d.getInputFileName());
             fileLoaded = true;
-            sh = new SampleHandler(sampleNum, startDate, endDate, IDlen, true,
+            sh = new SampleHandler(sampleNum, startDate, endDate, IDlen, false,
                   d.getInfo());
             saveDataSet();
         } 
@@ -1340,7 +1340,18 @@ public class HomeGui extends javax.swing.JFrame
 
    private void modifyBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_modifyBtnActionPerformed
    {//GEN-HEADEREND:event_modifyBtnActionPerformed
-      
+      String Id = txtSampleId.getText();
+      char [] info = sh.getSampleInfo(Id);
+      String header[] = new String[] { "Year", "Values" };
+      DefaultTableModel dtm = new DefaultTableModel(0, 0);
+      dtm.setColumnIdentifiers(header);
+      fireHistoryTable.setModel(dtm);
+      for( int i = 0; i <= (endDate - startDate); i++ )
+      {
+         dtm.addRow(new String[]{ new Integer(startDate + i).toString(), 
+                                    Character.toString(info[i]) } );
+      }
+      sh.changeSampleNames(d.getSampleIDInfo());
    }//GEN-LAST:event_modifyBtnActionPerformed
 
    private void resetDataFieldsBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_resetDataFieldsBtnActionPerformed

@@ -7,6 +7,7 @@ and open the template in the editor.
 package se3860_secondgui;
 
 import java.awt.List;
+import java.util.ArrayList;
 
 /**
  
@@ -14,7 +15,7 @@ import java.awt.List;
  */
 public class SampleHandler 
 {
-   private final Sample sampleList[];
+   private final ArrayList<Sample> sampleList;
    private final int idLength;
    private final int numSamples;
    
@@ -23,7 +24,7 @@ public class SampleHandler
    {
       idLength = idLen;
       numSamples = numOfSamples;
-      sampleList = new Sample[numOfSamples];
+      sampleList = new ArrayList<Sample>();//new Sample[numOfSamples];
       char [] info;
       if(newSet)
       {
@@ -31,7 +32,8 @@ public class SampleHandler
          for( int i = 0; i < numOfSamples; i++)
          {
             Sample s = new Sample(info, Integer.toString(i + 1));
-            sampleList[i] = s;
+            //sampleList[i] = s;
+            sampleList.add(s);
          }
       }
       else
@@ -39,7 +41,8 @@ public class SampleHandler
          for( int i = 0; i < numOfSamples; i++)
          {
             Sample s = new Sample(infoSet[i], Integer.toString(i + 1));
-            sampleList[i] = s;
+            //sampleList[i] = s;
+            sampleList.add(s);
          }
       }
    }
@@ -48,7 +51,7 @@ public class SampleHandler
    {
       for( int i = 0; i < numSamples; i++)
       {
-         if( sampleList[i].GetId().equals(idName))
+         if(sampleList.get(i).GetId().equals(idName) )//sampleList[i].GetId().equals(idName))
             return i;
       }
       return -1;
@@ -61,7 +64,8 @@ public class SampleHandler
             if(oldID != null)
             {
                 int index = Find(oldID);
-                sampleList[index].EditId(newID);
+                //sampleList[index].EditId(newID);
+                sampleList.get(index).EditId(newID);
                 return 1;
             }
             return 0; 
@@ -79,7 +83,8 @@ public class SampleHandler
          {
             sampleID[j] = sampleIDNames[j][i];
          }
-         sampleList[i].EditId(new String(sampleID));
+         //sampleList[i].EditId(new String(sampleID));
+         sampleList.get(i).EditId(new String(sampleID));
       }
    }
    
@@ -88,7 +93,8 @@ public class SampleHandler
        String [] names =  new String[numSamples];
            for( int i = 0; i < numSamples; i++)
       {
-         names[i] = sampleList[i].GetId();
+         //names[i] = sampleList[i].GetId();
+          names[i] = sampleList.get(i).GetId();
       }
       return names;   
    }
@@ -97,7 +103,23 @@ public class SampleHandler
    {
       int index = Find(Id);
       if(index != -1)
-         return sampleList[index].getInfo();
+         //return sampleList[index].getInfo();
+          return sampleList.get(index).getInfo();
       return null;
    }
+
+   public Sample getSample(int i)
+   {
+       return sampleList.get(i);
+   }
+   
+   public Sample getSampleById(String id)
+   {
+        for(int i = 0; i < sampleList.size(); i++)
+            if(sampleList.get(i).GetId().equals(id))
+                return sampleList.get(i);
+       
+        return null;
+   }
+
 }

@@ -11,6 +11,7 @@ package se3860_secondgui;
  */
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class DataHelper
 {
@@ -65,7 +66,35 @@ public class DataHelper
    private FileReader fr;
    private BufferedReader br;
    
+   public SampleHandler sHandle;
+   
    public DataLocations dataLocs = new DataLocations(); 
+   
+   /**
+    * Uses the file's current data to print the file
+    */
+   public void printFile()
+   {
+      try
+      {
+         prntW = new PrintWriter(inputFileName + "_out");
+         printSiteData();
+         PrintComments();
+         prntW.println();
+         prntW.println(FHX2FORMAT);
+         prntW.println(startYear + " " + numberOfSamples 
+               + " " + sampleIDLength);
+         printSampleIDs();
+         prntW.println();
+         prntW.flush();
+         printCollectedData();
+         prntW.close();
+      }
+      catch (Exception e)
+      {
+         System.out.println("Error: " + e);
+      }
+   }
    
    /*
    sets necessary site/year info, along with printing out all of
@@ -332,20 +361,33 @@ public class DataHelper
    
    private void printCollectedData()
    {
-      int counterYear = startYear;
-      for (int i = 0; i < ((endYear - startYear)); i++)
-      {
-         for (int j = 0; j < numberOfSamples; j++)
-         {
-            prntW.print(collectionData[i][j]);
-         }
-         prntW.println(" " + counterYear++);
-         prntW.flush();
-      }
-      for (int k = 0; k < numberOfSamples; k++)
-         prntW.print(collectionData[(endYear - startYear)][k]);
-      prntW.print(" " + counterYear++);
-   }
+       int counterYear = startYear;
+        if (sHandle != null) {
+
+            for(int i = 0; i < sHandle.getSample(0).getSize(); i++)
+            {
+                for(int j = 0; j < numberOfSamples ; j++)
+                {
+                    prntW.print(sHandle.getSample(j).getInfo()[i]);
+                }
+                prntW.println(" " + counterYear++ + "\n");
+                prntW.flush();
+            }       
+        } else {
+            
+            for (int i = 0; i < ((endYear - startYear)); i++) {
+                for (int j = 0; j < numberOfSamples; j++) {
+                    prntW.print(collectionData[i][j]);
+                }
+                prntW.println(" " + counterYear++);
+                prntW.flush();
+            }
+            for (int k = 0; k < numberOfSamples; k++) {
+                prntW.print(collectionData[(endYear - startYear)][k]);
+            }
+            prntW.print(" " + counterYear++);
+        }
+    }
    
    private void printSiteData()
    {
@@ -420,6 +462,9 @@ public class DataHelper
       ReadSampleIDs(br);
       br.readLine();
       ReadCollectionData(br);
+      
+      sHandle = new SampleHandler(numberOfSamples, startYear, endYear, sampleIDLength, false, collectionData);
+      
       br.close();
       fr.close();
    }
@@ -448,13 +493,13 @@ public class DataHelper
    
    private void ReadCollectionData(BufferedReader textReader) throws Exception
    {
-      collectionData = new char[(endYear - startYear) + 1][numberOfSamples];
+      collectionData = new char[numberOfSamples][(endYear - startYear) + 1];
       for (int i = 0; i <= (endYear - startYear); i++)
       {
          String charValue = textReader.readLine();
          for (int j = 0; j < numberOfSamples; j++)
          {
-            collectionData[i][j] = charValue.charAt(j);
+            collectionData[j][i] = charValue.charAt(j);
          }
       }
    }

@@ -42,4 +42,15 @@ public class Sample
       return data;
    }
    
+   public int getSize()
+   {
+       return data.length;
+   }
+   
+   @Override
+   public String toString()
+   {
+       return "Sample: " + id;
+   }
+   
 }

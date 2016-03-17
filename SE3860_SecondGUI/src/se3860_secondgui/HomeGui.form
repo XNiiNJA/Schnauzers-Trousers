@@ -226,18 +226,12 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtFirstYear">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFirstYearActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="txtSampleIDLength">
             </Component>
             <Component class="javax.swing.JTextField" name="txtLastYear">
             </Component>
             <Component class="javax.swing.JTextField" name="txtNumberOfSamples">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNumberOfSamplesActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="cancelBtn">
               <Properties>
@@ -653,9 +647,6 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtSiteName">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSiteNameActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>

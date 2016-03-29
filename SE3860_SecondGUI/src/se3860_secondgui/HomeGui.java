@@ -1330,7 +1330,7 @@ public class HomeGui extends javax.swing.JFrame
       DefaultTableModel dtm = new DefaultTableModel(0, 0);
       dtm.setColumnIdentifiers(header);
       fireHistoryTable.setModel(dtm);
-      for( int i = 0; i <= (endDate - startDate); i++ )
+      for( int i = 0; i <= (endDate - startDate + 1); i++ )
       {
          dtm.addRow(new String[]{ new Integer(startDate + i).toString(), 
                                     Character.toString(info[i]) } );

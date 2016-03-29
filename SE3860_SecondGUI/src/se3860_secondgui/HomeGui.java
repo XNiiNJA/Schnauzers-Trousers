@@ -1324,18 +1324,19 @@ public class HomeGui extends javax.swing.JFrame
 
    private void modifyBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_modifyBtnActionPerformed
    {//GEN-HEADEREND:event_modifyBtnActionPerformed
-      String Id = txtSampleId.getText();
-      char [] info = sh.getSampleInfo(Id);
-      String header[] = new String[] { "Year", "Values" };
-      DefaultTableModel dtm = new DefaultTableModel(0, 0);
-      dtm.setColumnIdentifiers(header);
-      fireHistoryTable.setModel(dtm);
-      for( int i = 0; i <= (endDate - startDate + 1); i++ )
-      {
-         dtm.addRow(new String[]{ new Integer(startDate + i).toString(), 
-                                    Character.toString(info[i]) } );
-      }
-      sh.changeSampleNames(d.getSampleIDInfo());
+//      String Id = txtSampleId.getText();
+//      char [] info = sh.getSampleInfo(Id);
+//      String header[] = new String[] { "Year", "Values" };
+//      DefaultTableModel dtm = new DefaultTableModel(0, 0);
+//      dtm.setColumnIdentifiers(header);
+//      fireHistoryTable.setModel(dtm);
+//      for( int i = 0; i <= (endDate - startDate + 1); i++ )
+//      {
+//         dtm.addRow(new String[]{ new Integer(startDate + i).toString(), 
+//                                    Character.toString(info[i]) } );
+//      }
+//      sh.changeSampleNames(d.getSampleIDInfo());
+      char
    }//GEN-LAST:event_modifyBtnActionPerformed
 
    private void resetDataFieldsBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_resetDataFieldsBtnActionPerformed
@@ -1403,6 +1404,15 @@ public class HomeGui extends javax.swing.JFrame
 
     private void saveDataBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveDataBtnActionPerformed
         d.printFile();
+        char tempData[];
+        tempData = new char[fireHistoryTable.getRowCount()];
+        int index = sampleListDropDown.getSelectedIndex();
+        for( int i = 0; i < fireHistoryTable.getRowCount(); i++)
+        {
+           String s = (String) fireHistoryTable.getValueAt(i, 1);
+           tempData[i] = s.charAt(0);
+        }
+        sh.changeSampleData(tempData, index);
     }//GEN-LAST:event_saveDataBtnActionPerformed
 
    /**

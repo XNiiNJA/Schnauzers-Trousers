@@ -69,4 +69,9 @@ public class Sample
        return "Sample: " + id;
    }
    
+   public void setData(char info[])
+   {
+      data = info;
+   }
+   
 }

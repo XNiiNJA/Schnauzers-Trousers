@@ -153,5 +153,9 @@ public class SampleHandler
         }
         return null;
    }
-
+   
+   public void changeSampleData( char data[], int index )
+   {
+      sampleList.get(index).setData(data);
+   }
 }

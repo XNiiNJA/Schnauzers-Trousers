@@ -28,7 +28,6 @@ public class HomeGui extends javax.swing.JFrame
    char dataInfo[][];
    boolean fileLoaded = false;
    DataHelper d = new DataHelper();
-   SampleHandler sh;
    
    public HomeGui()
    {
@@ -881,13 +880,6 @@ public class HomeGui extends javax.swing.JFrame
       });
 
       sampleListDropDown.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "sample 1", "sample 2", "sample 3", " " }));
-      sampleListDropDown.addActionListener(new java.awt.event.ActionListener()
-      {
-         public void actionPerformed(java.awt.event.ActionEvent evt)
-         {
-            sampleListDropDownActionPerformed(evt);
-         }
-      });
 
       fireHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
          new Object [][]
@@ -1150,11 +1142,11 @@ public class HomeGui extends javax.swing.JFrame
          }
 
         // SETUP SAMPLE LIST
-      sh = new SampleHandler(sampleNum, startDate, endDate, IDlen, true, null);
+      d.sHandle = new SampleHandler(sampleNum, startDate, endDate, IDlen, true, null);
       if (fileLoaded)
       {
          setSampleNamesFromFile();
-         sh.changeSampleNames(d.getSampleIDInfo());
+         d.sHandle.changeSampleNames(d.getSampleIDInfo());
       }
       else
       {
@@ -1279,7 +1271,7 @@ public class HomeGui extends javax.swing.JFrame
             
             this.txtFileName.setText(d.getInputFileName());
             fileLoaded = true;
-            sh = new SampleHandler(sampleNum, startDate, endDate, IDlen, false,
+            d.sHandle = new SampleHandler(sampleNum, startDate, endDate, IDlen, false,
                   d.getInfo());
             
             for(int i = 0; i < d.getNumberOfSamples(); i++)
@@ -1301,7 +1293,7 @@ public class HomeGui extends javax.swing.JFrame
         if( txtSampleId.getText().length() <= IDlen )
         {   
            String Id = txtSampleId.getText();
-           int errorCode = sh.changeId(Id, (String)sampleListDropDown.getSelectedItem());
+           int errorCode = d.sHandle.changeId(Id, (String)sampleListDropDown.getSelectedItem());
            if(errorCode == 0)
                errorlbl1.setVisible(true);
            else if(errorCode == -1)
@@ -1312,7 +1304,7 @@ public class HomeGui extends javax.swing.JFrame
                errorlbl1.setVisible(false);
                errorlbl3.setVisible(false);
                sampleListDropDown.removeAllItems();
-               String [] samples = sh.refreshIdnames();
+               String [] samples = d.sHandle.refreshIdnames();
                for(int i = 0; i < samples.length; i++)
                    sampleListDropDown.addItem(samples[i]);
            }
@@ -1324,19 +1316,22 @@ public class HomeGui extends javax.swing.JFrame
 
    private void modifyBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_modifyBtnActionPerformed
    {//GEN-HEADEREND:event_modifyBtnActionPerformed
-//      String Id = txtSampleId.getText();
-//      char [] info = sh.getSampleInfo(Id);
-//      String header[] = new String[] { "Year", "Values" };
-//      DefaultTableModel dtm = new DefaultTableModel(0, 0);
-//      dtm.setColumnIdentifiers(header);
-//      fireHistoryTable.setModel(dtm);
-//      for( int i = 0; i <= (endDate - startDate + 1); i++ )
-//      {
-//         dtm.addRow(new String[]{ new Integer(startDate + i).toString(), 
-//                                    Character.toString(info[i]) } );
-//      }
-//      sh.changeSampleNames(d.getSampleIDInfo());
-      char
+      char tempData[];
+      tempData = new char[endDate - startDate];
+      String id = (String)sampleListDropDown.getSelectedItem();
+      tempData = d.sHandle.getSampleInfo(id);
+      String header[] = new String[] { "Year", "Values" };
+      DefaultTableModel dtm = new DefaultTableModel(0, 0);
+      dtm.setColumnIdentifiers(header);
+      fireHistoryTable.setModel(dtm);
+      for( int i = 0; i <= (endDate - startDate); i++ )
+      {
+         dtm.addRow(new String[]{ new Integer(startDate + i).toString(), 
+                                    "" } );
+         fireHistoryTable.setValueAt(tempData[i], i, 1);
+      }
+      
+      
    }//GEN-LAST:event_modifyBtnActionPerformed
 
    private void resetDataFieldsBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_resetDataFieldsBtnActionPerformed
@@ -1383,25 +1378,6 @@ public class HomeGui extends javax.swing.JFrame
       this.txtFileName.setText(d.getInputFileName());
    }//GEN-LAST:event_resetDataFieldsBtnActionPerformed
 
-    private void sampleListDropDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sampleListDropDownActionPerformed
-        //A sample was selected
-        //Figure out which sample first. 
-        JComboBox cb = (JComboBox)evt.getSource();
-        String sample = (String)cb.getSelectedItem();
-        
-        Sample samp = d.sHandle.getSample(cb.getSelectedIndex());
-        
-        TableModel model = fireHistoryTable.getModel();
-        
-        char[] sampleData = samp.getInfo();
-        
-        for(int i = 0; i < sampleData.length; i++)
-        {
-            model.setValueAt(new Integer(d.getStartYear() + i), i, 0);
-            model.setValueAt(new Character(sampleData[i]), i, 1);
-        }
-    }//GEN-LAST:event_sampleListDropDownActionPerformed
-
     private void saveDataBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveDataBtnActionPerformed
         d.printFile();
         char tempData[];
@@ -1412,7 +1388,7 @@ public class HomeGui extends javax.swing.JFrame
            String s = (String) fireHistoryTable.getValueAt(i, 1);
            tempData[i] = s.charAt(0);
         }
-        sh.changeSampleData(tempData, index);
+        d.sHandle.changeSampleData(tempData, index);
     }//GEN-LAST:event_saveDataBtnActionPerformed
 
    /**

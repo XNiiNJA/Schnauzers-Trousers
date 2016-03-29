@@ -1142,7 +1142,6 @@ public class HomeGui extends javax.swing.JFrame
          }
 
         // SETUP SAMPLE LIST
-      d.sHandle = new SampleHandler(sampleNum, startDate, endDate, IDlen, true, null);
       if (fileLoaded)
       {
          setSampleNamesFromFile();
@@ -1150,6 +1149,7 @@ public class HomeGui extends javax.swing.JFrame
       }
       else
       {
+         d.sHandle = new SampleHandler(sampleNum, startDate, endDate, IDlen, true, null);
          Vector dropDownItems = new Vector();
          for( int i = 0; i < sampleNum; i++)
             dropDownItems.add( new Integer(i + 1).toString() );
@@ -1271,7 +1271,7 @@ public class HomeGui extends javax.swing.JFrame
             
             this.txtFileName.setText(d.getInputFileName());
             fileLoaded = true;
-            d.sHandle = new SampleHandler(sampleNum, startDate, endDate, IDlen, false,
+            d.sHandle = new SampleHandler(d.getNumberOfSamples(), d.getStartYear(), d.getEndYear(), d.getSampleIDLength(), false,
                   d.getInfo());
             
             for(int i = 0; i < d.getNumberOfSamples(); i++)
@@ -1293,6 +1293,7 @@ public class HomeGui extends javax.swing.JFrame
         if( txtSampleId.getText().length() <= IDlen )
         {   
            String Id = txtSampleId.getText();
+           String oldString = (String) sampleListDropDown.getSelectedItem();
            int errorCode = d.sHandle.changeId(Id, (String)sampleListDropDown.getSelectedItem());
            if(errorCode == 0)
                errorlbl1.setVisible(true);
@@ -1304,6 +1305,7 @@ public class HomeGui extends javax.swing.JFrame
                errorlbl1.setVisible(false);
                errorlbl3.setVisible(false);
                sampleListDropDown.removeAllItems();
+               d.sHandle.changeId(Id, oldString);
                String [] samples = d.sHandle.refreshIdnames();
                for(int i = 0; i < samples.length; i++)
                    sampleListDropDown.addItem(samples[i]);
@@ -1324,7 +1326,7 @@ public class HomeGui extends javax.swing.JFrame
       DefaultTableModel dtm = new DefaultTableModel(0, 0);
       dtm.setColumnIdentifiers(header);
       fireHistoryTable.setModel(dtm);
-      for( int i = 0; i <= (endDate - startDate); i++ )
+      for( int i = 0; i < (endDate - startDate); i++ )
       {
          dtm.addRow(new String[]{ new Integer(startDate + i).toString(), 
                                     "" } );
@@ -1379,16 +1381,17 @@ public class HomeGui extends javax.swing.JFrame
    }//GEN-LAST:event_resetDataFieldsBtnActionPerformed
 
     private void saveDataBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveDataBtnActionPerformed
-        d.printFile();
         char tempData[];
         tempData = new char[fireHistoryTable.getRowCount()];
         int index = sampleListDropDown.getSelectedIndex();
         for( int i = 0; i < fireHistoryTable.getRowCount(); i++)
         {
-           String s = (String) fireHistoryTable.getValueAt(i, 1);
+           String s = fireHistoryTable.getValueAt(i, 1).toString();
            tempData[i] = s.charAt(0);
         }
         d.sHandle.changeSampleData(tempData, index);
+        d.setOutputFileName(txtFileName.getText());
+        d.printFile();
     }//GEN-LAST:event_saveDataBtnActionPerformed
 
    /**

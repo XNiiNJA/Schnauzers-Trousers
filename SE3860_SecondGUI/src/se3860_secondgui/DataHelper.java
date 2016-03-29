@@ -77,7 +77,7 @@ public class DataHelper
    {
       try
       {
-         prntW = new PrintWriter(inputFileName + "_out");
+         prntW = new PrintWriter(outputFileName);
          printSiteData();
          PrintComments();
          prntW.println();
@@ -94,6 +94,11 @@ public class DataHelper
       {
          System.out.println("Error: " + e);
       }
+   }
+   
+   public void setOutputFileName (String fileName)
+   {
+      this.outputFileName = fileName;
    }
    
    /*
@@ -354,10 +359,10 @@ public class DataHelper
    /*
    sets the output file name
    */
-   private void setOutputFileName( String fileName )
-   {
-      outputFileName = fileName;
-   }
+   //private void setOutputFileName( String fileName )
+   //{
+   //   outputFileName = fileName;
+   //}
    
    private void printCollectedData()
    {
@@ -370,7 +375,7 @@ public class DataHelper
                 {
                     prntW.print(sHandle.getSample(j).getInfo()[i]);
                 }
-                prntW.println(" " + counterYear++ + "\n");
+                prntW.println(" " + counterYear++);
                 prntW.flush();
             }       
         } else {

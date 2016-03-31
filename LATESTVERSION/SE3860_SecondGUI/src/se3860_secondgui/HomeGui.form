@@ -74,7 +74,10 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jTabbedPane1" min="-2" pref="685" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jTabbedPane1" min="-2" pref="740" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -112,7 +115,7 @@
                       <Component id="jLabel72" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="524" max="32767" attributes="0"/>
+                      <EmptySpace pref="579" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -138,6 +141,10 @@
               <SubComponents>
                 <Component class="javax.swing.JTextArea" name="jTextArea2">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="f0" green="f0" red="f0" type="rgb"/>
+                    </Property>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
                     <Property name="text" type="java.lang.String" value="Before editing Fire History for a site, you must first&#xa;enter valid information into the &quot;Data Settings&quot; Tab. &#xa;Doing so will populate the Fire History Tab with the&#xa;functionality to save and edit Fire History information."/>
@@ -516,7 +523,7 @@
                                   <Component id="jSeparator2" min="-2" pref="553" max="-2" attributes="0"/>
                                   <Component id="jSeparator3" alignment="0" min="-2" pref="553" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="93" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="148" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">

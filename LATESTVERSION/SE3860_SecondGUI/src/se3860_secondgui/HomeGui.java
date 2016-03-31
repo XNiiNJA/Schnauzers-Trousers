@@ -207,6 +207,8 @@ public class HomeGui extends javax.swing.JFrame
       jLabel72.setForeground(new java.awt.Color(255, 0, 0));
       jLabel72.setText("FHX2 GUI: Software for the analysis of Fire history from tree rings");
 
+      jTextArea2.setEditable(false);
+      jTextArea2.setBackground(new java.awt.Color(240, 240, 240));
       jTextArea2.setColumns(20);
       jTextArea2.setRows(5);
       jTextArea2.setText("Before editing Fire History for a site, you must first\nenter valid information into the \"Data Settings\" Tab. \nDoing so will populate the Fire History Tab with the\nfunctionality to save and edit Fire History information.");
@@ -230,7 +232,7 @@ public class HomeGui extends javax.swing.JFrame
             .addComponent(jLabel72)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(524, Short.MAX_VALUE))
+            .addContainerGap(579, Short.MAX_VALUE))
       );
 
       jTabbedPane1.addTab("Home", homePanel);
@@ -713,7 +715,7 @@ public class HomeGui extends javax.swing.JFrame
                      .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
                      .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE)
                      .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 553, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addGap(0, 93, Short.MAX_VALUE))
+                  .addGap(0, 148, Short.MAX_VALUE))
                .addGroup(siteInfoPanelLayout.createSequentialGroup()
                   .addGroup(siteInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                      .addGroup(siteInfoPanelLayout.createSequentialGroup()
@@ -1138,7 +1140,9 @@ public class HomeGui extends javax.swing.JFrame
       );
       layout.setVerticalGroup(
          layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 685, javax.swing.GroupLayout.PREFERRED_SIZE)
+         .addGroup(layout.createSequentialGroup()
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 740, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(0, 0, Short.MAX_VALUE))
       );
 
       pack();

@@ -1,10 +1,15 @@
-//This class is the main Data Handler for the Program and handles all
-//interaction with data files. It holds all sample data and is responsible
-//for importing new data and printing out user entered data.
+/**
+   Handles all operations done on tree sample data, including reading and
+   writing to files.
+ */
 package se3860_secondgui;
 
+/**
+ *
+ * @author Nathan
+ */
+
 import java.io.*;
-import java.util.ArrayList;
 
 public class DataHelper
 {
@@ -64,7 +69,7 @@ public class DataHelper
    public DataLocations dataLocs = new DataLocations(); 
    
    /**
-    * This method Prints all sample Data out to a formated file
+    * Uses the file's current data to print to the file specified
     */
    public void printFile()
    {
@@ -90,16 +95,27 @@ public class DataHelper
       }
    }
    
-   //This Function sets the name of the file to be writen to
+   /**
+      sets the outFileName to a given string
+    * @param fileName
+   */
    public void setOutputFileName (String fileName)
    {
-      this.outputFileName = fileName;
+      outputFileName = fileName;
    }
    
-   /*
+   /**
    sets necessary site/year info, along with printing out all of
    the site information and sample information in the FHX2 format 
    to the specified file.
+    * @param startYear
+    * @param endYear
+    * @param numberOfSamp
+    * @param sampleIDLengths
+    * @param fileName
+    * @param siteInfo
+    * @param sampleIDInfoGui
+    * @param collectionDataInfo
    */
    public void printFile(int startYear, int endYear, int numberOfSamp, 
          int sampleIDLengths, String fileName, String siteInfo[], 
@@ -135,14 +151,18 @@ public class DataHelper
       }
    }
    
-   //returns the array of fire history data
+   /**
+   returns the current collection data as a 2d char array
+   @return 
+   */
    public char[][] getInfo()
    {
       return collectionData;
    }
    
-   /*
+   /**
    sets all of the site information from an array of strings
+    * @param siteInfo
    */
    public void setSiteInformation( String[] siteInfo )
    {
@@ -179,184 +199,118 @@ public class DataHelper
       substrateType = siteInfo[counter++];
    }
    
-   //This Function creates an array of the information to be stored in the 
-   //sample sets
-   private void createSiteInfoArray()
-   {
-      int counter = 0;
-      
-      dataLocs.nameOfSite = counter;
-      siteInfo[counter++] = nameOfSite;
-      
-      dataLocs.siteCode = counter;
-      siteInfo[counter++] = siteCode;
-      
-      dataLocs.collectionDate = counter;
-      siteInfo[counter++] = collectionDate;
-      
-      dataLocs.collectors = counter;
-      siteInfo[counter++] = collectors;
-      
-      dataLocs.crossdaters = counter;
-      siteInfo[counter++] = crossdaters;
-      
-      dataLocs.speciesName = counter;
-      siteInfo[counter++] = speciesName;
-      
-      dataLocs.commonName = counter;
-      siteInfo[counter++] = commonName;
-      
-      
-      dataLocs.habitatType = counter;
-      siteInfo[counter++] = habitatType;
-      
-      
-      dataLocs.country = counter;
-      siteInfo[counter++] = country;
-      
-      dataLocs.state = counter;
-      siteInfo[counter++] = state;
-      
-      dataLocs.county = counter;
-      siteInfo[counter++] = county;
-      
-      dataLocs.parkMonument = counter;
-      siteInfo[counter++] = parkMonument;
-      
-      dataLocs.nationalForest = counter;
-      siteInfo[counter++] = nationalForest;
-      
-      dataLocs.rangerDistrict = counter;
-      siteInfo[counter++] = rangerDistrict;
-      
-      dataLocs.township = counter;
-      siteInfo[counter++] = township;
-      
-      dataLocs.range = counter;
-      siteInfo[counter++] = range;
-      
-      dataLocs.section = counter;
-      siteInfo[counter++] = section;
-      
-      dataLocs.quarterSection = counter;
-      siteInfo[counter++] = quarterSection;
-      
-      dataLocs.utmEasting = counter;
-      siteInfo[counter++] = utmEasting;
-      
-      dataLocs.utmNorthing = counter;
-      siteInfo[counter++] = utmNorthing;
-      
-      dataLocs.latitude = counter;
-      siteInfo[counter++] = latitude;
-      
-      dataLocs.longitude = counter;
-      siteInfo[counter++] = longitude;
-      
-      dataLocs.topographicMap = counter;
-      siteInfo[counter++] = topographicMap;
-      
-      dataLocs.lowestElev = counter;
-      siteInfo[counter++] = lowestElev;
-      
-      dataLocs.highestElev = counter;
-      siteInfo[counter++] = highestElev;
-      
-      dataLocs.slope = counter;
-      siteInfo[counter++] = slope;
-      siteInfo[counter++] = aspect;
-      
-      dataLocs.aspect = counter;
-      siteInfo[counter++] = areaSampled;
-      
-      dataLocs.substrateType = counter;
-      siteInfo[counter++] = substrateType;
-   }
-   
-   
-   //returns the current number of samples
+   /**
+      return the number of samples for a given dataset
+   @return 
+   */
    public int getNumberOfSamples()
    {
        return numberOfSamples;
    }
    
-   //returns the start year of a sample set
+   /**
+      returns the current start year for a data set
+   @return 
+   */
    public int getStartYear()
    {
        return startYear;
    }
    
-   //Gets the last year recorded in the sample set
+   /**
+      returns the current end year of a data set
+   @return 
+   */
    public int getEndYear()
    {
        return endYear;
    }
    
-   //returns the array of site information
+   /**
+      returns the string array of the current site information.
+   @return 
+   */
    public String[] getSiteInfo()
    {
       return siteInfo;
    }
    
-   //returns the max length of a sample ID
+   /**
+      returns the length of the current sample size
+   @return 
+   */
    public int getSampleIDLength()
    {
        return sampleIDLength;
    }
    
-   /*
-   sets the number of samples
+   /**
+      sets the number of samples
+    * @param numOfSamples
    */
    public void setNumberOfSamples( int numOfSamples )
    {
       numberOfSamples = numOfSamples;
    }
    
-   /*
+   /**
    sets the start year
+    * @param startYearGui
    */
    public void setStartYear( int startYearGui )
    {
       startYear = startYearGui;
    }
    
-   /*
-   sets the end year
+   /**
+      sets the end year
+    * @param endYearGui
    */
    public void setEndYear ( int endYearGui )
    {
       endYear = endYearGui;
    }
    
-   /*
-   sets the sample's length
+   /**
+      sets the sample's length
+    * @param sampleIDLengthGui
    */
    public void setSampleIDLength ( int sampleIDLengthGui )
    {
       sampleIDLength = sampleIDLengthGui;
    }
    
-   //Returns the specified sample ID
+   /**
+      returns the info for a given sample at 2d array location (i,j)
+   @param i
+   @param j
+   @return 
+   */
    public char getSampleIDInfoAt(int i, int j)
    {
       return sampleIDInfo[i][j];
    }
    
-   //returns all the sample ids info
+   /**
+      returns the whole 2d array of char that represents our sample info
+   @return 
+   */
    public char[][] getSampleIDInfo()
    {
       return sampleIDInfo;
    }
    
-   //This function recieves and array of the new sample ids and writes over the
-   //old set
+   /**
+      sets the sampleIDInfo to new IDs
+   @param newIDs 
+   */
    public void setSampleNamesFromArray(char[][] newIDs)
    {
       sampleIDInfo = newIDs;
    }
    
-   /*
-   prints ot file all of the sample IDs in FHX2 format
+   /**
+      prints to file all of the sample IDs in FHX2 format
    */
    private void printSampleIDs()
    {
@@ -370,39 +324,41 @@ public class DataHelper
       }
    }
    
-   
-   //sets the output file name
+   /**
+      Prints to file all of the current sample data 
+      (the 2d array with year numbers) in FHX format
+   */
    private void printCollectedData()
    {
-       int counterYear = startYear;
-        if (sHandle != null) {
-
-            for(int i = 0; i < sHandle.getSample(0).getSize(); i++)
-            {
-                for(int j = 0; j < numberOfSamples ; j++)
-                {
-                    prntW.print(sHandle.getSample(j).getInfo()[i]);
-                }
-                prntW.println(" " + counterYear++);
-                prntW.flush();
-            }       
-        } else {
-            
-            for (int i = 0; i < ((endYear - startYear)); i++) {
-                for (int j = 0; j < numberOfSamples; j++) {
-                    prntW.print(collectionData[i][j]);
-                }
-                prntW.println(" " + counterYear++);
-                prntW.flush();
-            }
-            for (int k = 0; k < numberOfSamples; k++) {
-                prntW.print(collectionData[(endYear - startYear)][k]);
-            }
-            prntW.print(" " + counterYear++);
-        }
+      int counterYear = startYear;
+      if (sHandle != null) 
+      {
+         for(int i = 0; i < sHandle.getSample(0).getSize(); i++)
+         {
+            for(int j = 0; j < numberOfSamples ; j++)
+               prntW.print(sHandle.getSample(j).getInfo()[i]);
+            prntW.println(" " + counterYear++);
+            prntW.flush();
+         }       
+      } 
+      else 
+      {
+         for (int i = 0; i < ((endYear - startYear)); i++) 
+         {
+             for (int j = 0; j < numberOfSamples; j++) 
+               prntW.print(collectionData[i][j]);
+             prntW.println(" " + counterYear++);
+             prntW.flush();
+         }
+         for (int k = 0; k < numberOfSamples; k++) 
+            prntW.print(collectionData[(endYear - startYear)][k]);
+         prntW.print(" " + counterYear++);
+      }
     }
    
-   //this function prints the header info to a file
+   /**
+      Prints to file all of the site info data in FHX format
+   */
    private void printSiteData()
    {
       prntW.println("Name of site   : " + nameOfSite);
@@ -437,7 +393,10 @@ public class DataHelper
       prntW.println("Substrate type : " + substrateType);
    }
    
-   //This function reads in the fire history data from a file
+   /**
+      Populates the siteInfo array with the corresponding values
+      from a certain FHX file
+   */
    private void ReadFileSiteInformation(BufferedReader textReader) throws Exception
    {
       siteInfo = new String[NUMBEROFLINESSITEINFO];
@@ -457,12 +416,21 @@ public class DataHelper
             }
          }
          else
+         {
             siteInfo[i] = "";
+         }
       }
    }
    
-   //This function is responsible for reading in all data from a current file
-   private void ReadFromFHX2(String FilePath, BufferedReader textReader, FileReader fileRead) throws Exception
+   /**
+      Reads from the FHX file to set the sample info and the site info. 
+   @param FilePath
+   @param textReader
+   @param fileRead
+   @throws Exception 
+   */
+   private void ReadFromFHX2(String FilePath, BufferedReader textReader, 
+                             FileReader fileRead) throws Exception
    {
       textReader.close();
       fileRead.close();
@@ -479,13 +447,19 @@ public class DataHelper
       br.readLine();
       ReadCollectionData(br);
       
-      sHandle = new SampleHandler(numberOfSamples, startYear, endYear, sampleIDLength, false, collectionData);
+      sHandle = new SampleHandler(numberOfSamples, startYear, endYear, 
+                                  sampleIDLength, false, collectionData);
       
       br.close();
       fr.close();
    }
    
-   //reads in the primary information for a sample set
+   /**
+      Reads from file after the site info, the start year, the number of
+      samples, and the sample ID length.
+   @param textReader
+   @throws Exception 
+   */
    private void ReadSampleInformation(BufferedReader textReader) throws Exception
    {
       String multiValue = textReader.readLine();
@@ -495,7 +469,11 @@ public class DataHelper
       sampleIDLength = Integer.parseInt(parts[2]);
    }
    
-   //reads in all sample Ids from file
+   /**
+      Reads from FHX file all of the sample IDs into a 2d array
+   @param textReader
+   @throws Exception 
+   */
    private void ReadSampleIDs(BufferedReader textReader) throws Exception
    {
       sampleIDInfo = new char[sampleIDLength][numberOfSamples];
@@ -509,7 +487,11 @@ public class DataHelper
       }
    }
    
-   //Reads all fire history data into an array
+   /**
+      Reads from FHX file all of the sample info into a 2d array
+   @param textReader
+   @throws Exception 
+   */
    private void ReadCollectionData(BufferedReader textReader) throws Exception
    {
       collectionData = new char[numberOfSamples][(endYear - startYear) + 1];
@@ -523,8 +505,11 @@ public class DataHelper
       }
    }
    
-   
-   //finds the last year recorded in an imported file
+   /**
+      In a FHX file this method will find and set the endYear
+   @param textReader
+   @throws Exception 
+   */
    private void FindEndYear(BufferedReader textReader) throws Exception
    {
       String lineRead = textReader.readLine();
@@ -538,7 +523,12 @@ public class DataHelper
       endYear = Integer.parseInt(parts[1]);
    }
    
-   //reads in comments from an imported file
+   /**
+      Reads the comment section of a FHX and sets the comments[] to what 
+      it read in.
+   @param textReader
+   @throws Exception 
+   */
    private void ReadComments(BufferedReader textReader) throws Exception
    {
       int counter = 0;
@@ -553,7 +543,10 @@ public class DataHelper
       comments[counter] = "End Comments   :";
    }
    
-   //prints comments out to a specified data file
+   /**
+      Prints to file the current comments[], if there are no comments
+      to be printed it prints to file an empty comments block.
+   */
    private void PrintComments()
    {
       int counter = 0;
@@ -575,35 +568,47 @@ public class DataHelper
       }
    }
    
-   //removes the comment block from a data file
+   /**
+      Sets the current comments[] to null
+   */
    public void eraseComments()
    {
       comments = null;
    }
    
+   /**
+      Sets the inputFileName to a given String
+   @param filePath 
+   */
    private void setInputFileName(String filePath)
    {
        String [] parts = filePath.split("\\\\");
        inputFileName = parts[parts.length - 1];
    }
    
-   //returns the name of the file to import
+   /**
+      returns the current inputFileName
+   @return 
+   */
    public String getInputFileName()
    {
        return inputFileName;
    }
    
-   //this function starts the process of importing a sample set
+   /**
+      sets the input file name, then reads in the site information for the 
+      given file, then reads in the comments block, then reads in sample IDs,
+      then reads in sample data.
+   @param filePath 
+   */
    public void readFromFile(String filePath)
    {
-       
       try
       {
          FileReader fr = new FileReader(filePath);
          BufferedReader br = new BufferedReader(fr);
          setInputFileName(filePath);
          ReadFileSiteInformation(br);
-         //createSiteInfoArray();
          ReadComments(br);
          FindEndYear(br);
          ReadFromFHX2(filePath, br, fr);
@@ -615,8 +620,11 @@ public class DataHelper
       }
    }
    
-   //this class contains all constants used in DataHelp and acts like a 
-   //container
+   
+   /**
+      sets each site info field to its corresponding array placement in
+      siteInfo[]
+   */
    public class DataLocations
    {
       int nameOfSite = 0;
@@ -656,6 +664,5 @@ public class DataHelper
       DataHelper d = new DataHelper();
       d.readFromFile("J:\\SE\\SE3860\\Schnauzers-Trousers\\trunk\\SE3860_SecondGUI\\uslcf001.fhx");
       d.printFile(1150, 2001, 89, 5, "Newfile.fhx", siteInfo, sampleIDInfo, collectionData);
-      
    }
 }

@@ -1144,11 +1144,18 @@ public class HomeGui extends javax.swing.JFrame
       pack();
    }// </editor-fold>//GEN-END:initComponents
 
+   /*
+      updates site info when save btn is clicked
+   */
    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSaveActionPerformed
    {//GEN-HEADEREND:event_btnSaveActionPerformed
         updateSiteInfo();
    }//GEN-LAST:event_btnSaveActionPerformed
 
+   /*
+      updates the siteInfo[] with the text in each text boxes, then prints 
+      to the file.
+   */
    private void updateSiteInfo()
    {
       siteInfo = new String[30];
@@ -1187,11 +1194,19 @@ public class HomeGui extends javax.swing.JFrame
       d.setOutputFileName(fileName);
       d.printFile();
    }
+   
+   /*
+      deletes all text fields
+   */
    private void btnDeleteAllActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnDeleteAllActionPerformed
    {//GEN-HEADEREND:event_btnDeleteAllActionPerformed
       deleteAllFields();
    }//GEN-LAST:event_btnDeleteAllActionPerformed
 
+   /*
+      sets the start/end dates, sample num/idlength, and filename. Adds rows 
+      to the fire history table, then sets the sample names
+   */
    private void saveDataSet()
    {
         startDate = Integer.parseInt(txtFirstYear.getText());
@@ -1206,8 +1221,8 @@ public class HomeGui extends javax.swing.JFrame
         fireHistoryTable.setModel(dtm);
          for( int i = 0; i <= (endDate - startDate); i++ )
          {
-           dtm.addRow(new String[]{ new Integer(startDate + i).toString(), 
-                                    "" } );
+           dtm.addRow(
+                 new String[]{ new Integer(startDate + i).toString(), "" } );
          }
 
         // SETUP SAMPLE LIST
@@ -1236,6 +1251,9 @@ public class HomeGui extends javax.swing.JFrame
       }
    }
    
+   /*
+      clears all text fields
+   */
    private void deleteAllFields()
    {
       txtSiteName.setText("");
@@ -1272,6 +1290,9 @@ public class HomeGui extends javax.swing.JFrame
       txtNumSamples.setText("");
    }
    
+   /*
+      adds dropdown items from the array of sample IDs
+   */
    private void setSampleNamesFromFile()
    {
       char[] sampleID = new char[d.getSampleIDLength()];
@@ -1288,13 +1309,16 @@ public class HomeGui extends javax.swing.JFrame
       sampleListDropDown.setModel(model);
    }
    
+   /*
+      Saves the data set, and prints to file, unless there are empty textfields
+   */
    private void saveDataSetBtn1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_saveDataSetBtn1ActionPerformed
    {//GEN-HEADEREND:event_saveDataSetBtn1ActionPerformed
-      if (txtFirstYear.getText().toString().isEmpty() || 
-            txtLastYear.getText().toString().isEmpty() || 
-            txtNumberOfSamples.getText().toString().isEmpty() || 
-            txtSampleIDLength.getText().toString().isEmpty() ||
-            txtFileName.getText().toString().isEmpty())
+      if (txtFirstYear.getText().isEmpty() || 
+            txtLastYear.getText().isEmpty() || 
+            txtNumberOfSamples.getText().isEmpty() || 
+            txtSampleIDLength.getText().isEmpty() ||
+            txtFileName.getText().isEmpty())
       {  
          JOptionPane.showMessageDialog(null, "The Data Information "
             + "has not been properly inserted. "
@@ -1311,6 +1335,10 @@ public class HomeGui extends javax.swing.JFrame
       }
    }//GEN-LAST:event_saveDataSetBtn1ActionPerformed
 
+   /*
+      Fills the selected indices of the fire history data table with the
+      selected char value
+   */
    private void btnFillFiftyActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFillFiftyActionPerformed
    {//GEN-HEADEREND:event_btnFillFiftyActionPerformed
       String value = new String(cmbNewValue.getSelectedItem().toString());
@@ -1321,13 +1349,16 @@ public class HomeGui extends javax.swing.JFrame
          fireHistoryTable.setValueAt( value, i, 1 );
    }//GEN-LAST:event_btnFillFiftyActionPerformed
 
+   /*
+      Imports an already created file into the system. Fills corresponding
+      textfields with known information
+   */
     private void mnuImportDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuImportDataActionPerformed
         //Create a file chooser
         final JFileChooser fc = new JFileChooser();
 
         int returnVal;
         returnVal = fc.showOpenDialog(this);
-        
         
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
@@ -1343,79 +1374,51 @@ public class HomeGui extends javax.swing.JFrame
             this.txtCountry.setText(test[d.dataLocs.country]);
             this.txtCounty.setText(test[d.dataLocs.county]);
             this.txtCrossDaters.setText(test[d.dataLocs.crossdaters]); ;
-
-            this.txtHabitatType.setText(test[d.dataLocs.habitatType]);
-            
-            this.txtHighestElev.setText(test[d.dataLocs.highestElev]);
-            
-            this.txtLatitude.setText(test[d.dataLocs.latitude]);
-            
-            this.txtLongitude.setText(test[d.dataLocs.longitude]);
-            
-            this.txtLowestElevation.setText(test[d.dataLocs.lowestElev]);
-            
-            this.txtSiteName.setText(test[d.dataLocs.nameOfSite]);
-            
-            this.txtNationalForest.setText(test[d.dataLocs.nationalForest]);
-            
-            this.txtNumSamples.setText(Integer.toString(d.getNumberOfSamples()));
-            
-            this.txtParkMonument.setText(test[d.dataLocs.parkMonument]);
-            
-            this.txtQuarterSection.setText(test[d.dataLocs.quarterSection]);
-            
-            this.txtRange.setText(test[d.dataLocs.range]);
-            
-            this.txtRangerDistrict.setText(test[d.dataLocs.rangerDistrict]);
-            
-            this.txtSection.setText(test[d.dataLocs.section]);
-            
-            this.txtSiteCode.setText(test[d.dataLocs.siteCode]);
-            
-            this.txtSlope.setText(test[d.dataLocs.slope]);
-            
-            this.txtSpeciesName.setText(test[d.dataLocs.speciesName]);
-            
-            this.txtState.setText(test[d.dataLocs.state]);
-            
+            this.txtHabitatType.setText(test[d.dataLocs.habitatType]);          
+            this.txtHighestElev.setText(test[d.dataLocs.highestElev]);         
+            this.txtLatitude.setText(test[d.dataLocs.latitude]);         
+            this.txtLongitude.setText(test[d.dataLocs.longitude]);         
+            this.txtLowestElevation.setText(test[d.dataLocs.lowestElev]);         
+            this.txtSiteName.setText(test[d.dataLocs.nameOfSite]);         
+            this.txtNationalForest.setText(test[d.dataLocs.nationalForest]);         
+            this.txtNumSamples.setText(Integer.toString(d.getNumberOfSamples()));          
+            this.txtParkMonument.setText(test[d.dataLocs.parkMonument]);         
+            this.txtQuarterSection.setText(test[d.dataLocs.quarterSection]);        
+            this.txtRange.setText(test[d.dataLocs.range]);    
+            this.txtRangerDistrict.setText(test[d.dataLocs.rangerDistrict]);          
+            this.txtSection.setText(test[d.dataLocs.section]);      
+            this.txtSiteCode.setText(test[d.dataLocs.siteCode]);       
+            this.txtSlope.setText(test[d.dataLocs.slope]);   
+            this.txtSpeciesName.setText(test[d.dataLocs.speciesName]);     
+            this.txtState.setText(test[d.dataLocs.state]); 
             this.txtSubstrateType.setText(test[d.dataLocs.substrateType]);
-            
             this.txtTopographicMap.setText(test[d.dataLocs.topographicMap]);
-            
             this.txtTownship.setText(test[d.dataLocs.township]);
-            
             this.txtUTMEasting.setText(test[d.dataLocs.utmEasting]);
-            
             this.txtUTMNorthing.setText(test[d.dataLocs.utmNorthing]);
-            
             this.txtStartYear.setText(Integer.toString(d.getStartYear()));
-            
             this.txtEndYear.setText(Integer.toString(d.getEndYear()));
-            
             this.txtFirstYear.setText(Integer.toString(d.getStartYear()));
-            
             this.txtLastYear.setText(Integer.toString(d.getEndYear()));
-            
             this.txtNumberOfSamples.setText(Integer.toString(d.getNumberOfSamples()));
-            
             this.txtSampleIDLength.setText(Integer.toString(d.getSampleIDLength()));
-            
             this.txtFileName.setText(d.getInputFileName());
+            
             fileLoaded = true;
-            d.sHandle = new SampleHandler(d.getNumberOfSamples(), d.getStartYear(), d.getEndYear(), d.getSampleIDLength(), false,
-                  d.getInfo());
-            
+            d.sHandle = new SampleHandler(d.getNumberOfSamples(), d.getStartYear(), 
+                                          d.getEndYear(), d.getSampleIDLength(), 
+                                          false, d.getInfo());
             for(int i = 0; i < d.getNumberOfSamples(); i++)
-            {
                 sampleListDropDown.addItem(d.sHandle.getSample(i));
-                
-            }
-            
             saveDataSet();
         } 
         
     }//GEN-LAST:event_mnuImportDataActionPerformed
 
+    /*
+      changes the sample ID of a selected sample, gives errors for new
+      id length and more.
+    */
    private void btnchangeSampleIDActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnchangeSampleIDActionPerformed
    {//GEN-HEADEREND:event_btnchangeSampleIDActionPerformed
         if( txtSampleId.getText().length() <= IDlen )
@@ -1444,6 +1447,10 @@ public class HomeGui extends javax.swing.JFrame
 
    }//GEN-LAST:event_btnchangeSampleIDActionPerformed
 
+   /*
+      Saves the data in the fire history data table for a chosen sample
+      once it has been modified.
+   */
    private void modifyBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_modifyBtnActionPerformed
    {//GEN-HEADEREND:event_modifyBtnActionPerformed
       char tempData[];
@@ -1464,6 +1471,9 @@ public class HomeGui extends javax.swing.JFrame
       
    }//GEN-LAST:event_modifyBtnActionPerformed
 
+   /*
+      reset the site info data fields to what the system last knew them as
+   */
    private void resetDataFieldsBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_resetDataFieldsBtnActionPerformed
    {//GEN-HEADEREND:event_resetDataFieldsBtnActionPerformed
       if (!fileLoaded)
@@ -1508,6 +1518,9 @@ public class HomeGui extends javax.swing.JFrame
       this.txtFileName.setText(d.getInputFileName());
    }//GEN-LAST:event_resetDataFieldsBtnActionPerformed
 
+   /*
+      saves the fire history data table and prints it to file
+   */
     private void saveDataBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveDataBtnActionPerformed
         char tempData[];
         tempData = new char[fireHistoryTable.getRowCount()];
@@ -1525,18 +1538,25 @@ public class HomeGui extends javax.swing.JFrame
         d.printFile();
     }//GEN-LAST:event_saveDataBtnActionPerformed
 
+    /*
+      not used
+    */
    private void txtFileNameKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_txtFileNameKeyTyped
    {//GEN-HEADEREND:event_txtFileNameKeyTyped
       //fileLoaded = false;
    }//GEN-LAST:event_txtFileNameKeyTyped
 
+   /*
+      Saves the data set unless there is no data in correspoding text fields,
+      and then prints to file
+   */
    private void mnuSaveFileActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mnuSaveFileActionPerformed
    {//GEN-HEADEREND:event_mnuSaveFileActionPerformed
-      if(txtFirstYear.getText().toString().isEmpty() || 
-            txtLastYear.getText().toString().isEmpty() || 
-            txtNumberOfSamples.getText().toString().isEmpty() || 
-            txtSampleIDLength.getText().toString().isEmpty() ||
-            txtFileName.getText().toString().isEmpty())
+      if(txtFirstYear.getText().isEmpty() || 
+            txtLastYear.getText().isEmpty() || 
+            txtNumberOfSamples.getText().isEmpty() || 
+            txtSampleIDLength.getText().isEmpty() ||
+            txtFileName.getText().isEmpty())
       {
          JOptionPane.showMessageDialog(null, "The Data Information "
             + "has not been properly inserted. "
@@ -1552,7 +1572,9 @@ public class HomeGui extends javax.swing.JFrame
       }
    }//GEN-LAST:event_mnuSaveFileActionPerformed
 
-   
+   /*
+      opens up the fhx website
+   */
    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem1ActionPerformed
    {//GEN-HEADEREND:event_jMenuItem1ActionPerformed
       try
@@ -1565,14 +1587,18 @@ public class HomeGui extends javax.swing.JFrame
       }
    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+   /*
+      Saves the data set unless there is no data in correspoding text fields,
+      and then prints to file
+   */
    private void saveDataSetBtn2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_saveDataSetBtn2ActionPerformed
    {//GEN-HEADEREND:event_saveDataSetBtn2ActionPerformed
       fileLoaded = false;
-      if(txtFirstYear.getText().toString().isEmpty() || 
-            txtLastYear.getText().toString().isEmpty() || 
-            txtNumberOfSamples.getText().toString().isEmpty() || 
-            txtSampleIDLength.getText().toString().isEmpty() ||
-            txtFileName.getText().toString().isEmpty())
+      if(txtFirstYear.getText().isEmpty() || 
+            txtLastYear.getText().isEmpty() || 
+            txtNumberOfSamples.getText().isEmpty() || 
+            txtSampleIDLength.getText().isEmpty() ||
+            txtFileName.getText().isEmpty())
       {
          JOptionPane.showMessageDialog(null, "The Data Information "
             + "has not been properly inserted. "
@@ -1588,6 +1614,9 @@ public class HomeGui extends javax.swing.JFrame
       }
    }//GEN-LAST:event_saveDataSetBtn2ActionPerformed
 
+   /*
+      resets all of the textfields for data settings
+   */
    private void resetAllFieldsDataActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_resetAllFieldsDataActionPerformed
    {//GEN-HEADEREND:event_resetAllFieldsDataActionPerformed
       txtFirstYear.setText("");

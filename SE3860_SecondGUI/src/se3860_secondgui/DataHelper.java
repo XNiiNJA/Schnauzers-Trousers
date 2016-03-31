@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//This class is the main Data Handler for the Program and handles all
+//interaction with data files. It holds all sample data and is responsible
+//for importing new data and printing out user entered data.
 package se3860_secondgui;
-
-/**
- *
- * @author Nathan
- */
 
 import java.io.*;
 import java.util.ArrayList;
@@ -71,7 +64,7 @@ public class DataHelper
    public DataLocations dataLocs = new DataLocations(); 
    
    /**
-    * Uses the file's current data to print the file
+    * This method Prints all sample Data out to a formated file
     */
    public void printFile()
    {
@@ -97,7 +90,7 @@ public class DataHelper
       }
    }
    
-   
+   //This Function sets the name of the file to be writen to
    public void setOutputFileName (String fileName)
    {
       this.outputFileName = fileName;
@@ -142,6 +135,7 @@ public class DataHelper
       }
    }
    
+   //returns the array of fire history data
    public char[][] getInfo()
    {
       return collectionData;
@@ -185,6 +179,8 @@ public class DataHelper
       substrateType = siteInfo[counter++];
    }
    
+   //This Function creates an array of the information to be stored in the 
+   //sample sets
    private void createSiteInfoArray()
    {
       int counter = 0;
@@ -277,26 +273,32 @@ public class DataHelper
       siteInfo[counter++] = substrateType;
    }
    
+   
+   //returns the current number of samples
    public int getNumberOfSamples()
    {
        return numberOfSamples;
    }
    
+   //returns the start year of a sample set
    public int getStartYear()
    {
        return startYear;
    }
    
+   //Gets the last year recorded in the sample set
    public int getEndYear()
    {
        return endYear;
    }
    
+   //returns the array of site information
    public String[] getSiteInfo()
    {
       return siteInfo;
    }
    
+   //returns the max length of a sample ID
    public int getSampleIDLength()
    {
        return sampleIDLength;
@@ -334,16 +336,20 @@ public class DataHelper
       sampleIDLength = sampleIDLengthGui;
    }
    
+   //Returns the specified sample ID
    public char getSampleIDInfoAt(int i, int j)
    {
       return sampleIDInfo[i][j];
    }
    
+   //returns all the sample ids info
    public char[][] getSampleIDInfo()
    {
       return sampleIDInfo;
    }
    
+   //This function recieves and array of the new sample ids and writes over the
+   //old set
    public void setSampleNamesFromArray(char[][] newIDs)
    {
       sampleIDInfo = newIDs;
@@ -364,14 +370,8 @@ public class DataHelper
       }
    }
    
-   /*
-   sets the output file name
-   */
-   //private void setOutputFileName( String fileName )
-   //{
-   //   outputFileName = fileName;
-   //}
    
+   //sets the output file name
    private void printCollectedData()
    {
        int counterYear = startYear;
@@ -402,6 +402,7 @@ public class DataHelper
         }
     }
    
+   //this function prints the header info to a file
    private void printSiteData()
    {
       prntW.println("Name of site   : " + nameOfSite);
@@ -436,6 +437,7 @@ public class DataHelper
       prntW.println("Substrate type : " + substrateType);
    }
    
+   //This function reads in the fire history data from a file
    private void ReadFileSiteInformation(BufferedReader textReader) throws Exception
    {
       siteInfo = new String[NUMBEROFLINESSITEINFO];
@@ -459,6 +461,7 @@ public class DataHelper
       }
    }
    
+   //This function is responsible for reading in all data from a current file
    private void ReadFromFHX2(String FilePath, BufferedReader textReader, FileReader fileRead) throws Exception
    {
       textReader.close();
@@ -482,6 +485,7 @@ public class DataHelper
       fr.close();
    }
    
+   //reads in the primary information for a sample set
    private void ReadSampleInformation(BufferedReader textReader) throws Exception
    {
       String multiValue = textReader.readLine();
@@ -491,6 +495,7 @@ public class DataHelper
       sampleIDLength = Integer.parseInt(parts[2]);
    }
    
+   //reads in all sample Ids from file
    private void ReadSampleIDs(BufferedReader textReader) throws Exception
    {
       sampleIDInfo = new char[sampleIDLength][numberOfSamples];
@@ -504,6 +509,7 @@ public class DataHelper
       }
    }
    
+   //Reads all fire history data into an array
    private void ReadCollectionData(BufferedReader textReader) throws Exception
    {
       collectionData = new char[numberOfSamples][(endYear - startYear) + 1];
@@ -517,6 +523,8 @@ public class DataHelper
       }
    }
    
+   
+   //finds the last year recorded in an imported file
    private void FindEndYear(BufferedReader textReader) throws Exception
    {
       String lineRead = textReader.readLine();
@@ -530,6 +538,7 @@ public class DataHelper
       endYear = Integer.parseInt(parts[1]);
    }
    
+   //reads in comments from an imported file
    private void ReadComments(BufferedReader textReader) throws Exception
    {
       int counter = 0;
@@ -544,6 +553,7 @@ public class DataHelper
       comments[counter] = "End Comments   :";
    }
    
+   //prints comments out to a specified data file
    private void PrintComments()
    {
       int counter = 0;
@@ -565,6 +575,7 @@ public class DataHelper
       }
    }
    
+   //removes the comment block from a data file
    public void eraseComments()
    {
       comments = null;
@@ -576,11 +587,13 @@ public class DataHelper
        inputFileName = parts[parts.length - 1];
    }
    
+   //returns the name of the file to import
    public String getInputFileName()
    {
        return inputFileName;
    }
    
+   //this function starts the process of importing a sample set
    public void readFromFile(String filePath)
    {
        
@@ -602,6 +615,8 @@ public class DataHelper
       }
    }
    
+   //this class contains all constants used in DataHelp and acts like a 
+   //container
    public class DataLocations
    {
       int nameOfSite = 0;

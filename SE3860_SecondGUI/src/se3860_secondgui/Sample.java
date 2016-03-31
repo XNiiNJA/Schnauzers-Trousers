@@ -24,6 +24,11 @@ public class Sample
    {
       data = new char[info.length];
       System.arraycopy(info, 0, data, 0, info.length);
+      if (data[0] == '\0')
+      {
+         for (int i = 0; i < info.length; i++)
+            data[i] = '.';
+      }
       id = idName;
    }
    

@@ -31,7 +31,7 @@ public class SampleHandler
       char [] info;
       if(newSet)
       {
-         info = new char[lastYear - startYear];
+         info = new char[lastYear - startYear + 1];
          for( int i = 0; i < numOfSamples; i++)
          {
             Sample s = new Sample(info, Integer.toString(i + 1));
@@ -157,5 +157,21 @@ public class SampleHandler
    public void changeSampleData( char data[], int index )
    {
       sampleList.get(index).setData(data);
+   }
+   
+   public char[][] getArrayOfSampleIDs()
+   {
+      char[][] returnArray = new char[idLength][numSamples];
+      for (int i = 0; i < numSamples; i++)
+      {
+         String s = this.sampleList.get(i).GetId();
+         while(s.length() < idLength)
+            s += ' ';
+         for (int j = 0; j < idLength; j++)
+         {
+               returnArray[j][i] = s.charAt(j);
+         }
+      }
+      return returnArray;
    }
 }

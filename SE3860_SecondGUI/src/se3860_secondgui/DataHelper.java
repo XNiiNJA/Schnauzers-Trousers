@@ -15,38 +15,38 @@ import java.util.ArrayList;
 
 public class DataHelper
 {
-   private String nameOfSite;
-   private String siteCode;
-   private String collectionDate;
-   private String collectors;
-   private String crossdaters;
+   private String nameOfSite = "";
+   private String siteCode = "";
+   private String collectionDate = "";
+   private String collectors = "";
+   private String crossdaters = "";
    private int numberOfSamples = 0;
-   private String speciesName;
-   private String commonName;
-   private String habitatType;
-   private String country;
-   private String state;
-   private String county;
-   private String parkMonument;
-   private String nationalForest;
-   private String rangerDistrict;
-   private String township;
-   private String range;
-   private String section;
-   private String quarterSection;
-   private String utmEasting;
-   private String utmNorthing;
-   private String latitude;
-   private String longitude;
-   private String topographicMap;
-   private String lowestElev;
-   private String highestElev;
-   private String slope;
-   private String aspect;
-   private String areaSampled;
-   private String substrateType;
-   private String outputFileName;
-   private String inputFileName;
+   private String speciesName = "";
+   private String commonName = "";
+   private String habitatType = "";
+   private String country = "";
+   private String state = "";
+   private String county = "";
+   private String parkMonument = "";
+   private String nationalForest = "";
+   private String rangerDistrict = "";
+   private String township = "";
+   private String range = "";
+   private String section = "";
+   private String quarterSection = "";
+   private String utmEasting = "";
+   private String utmNorthing = "";
+   private String latitude = "";
+   private String longitude = "";
+   private String topographicMap = "";
+   private String lowestElev = "";
+   private String highestElev = "";
+   private String slope = "";
+   private String aspect = "";
+   private String areaSampled = "";
+   private String substrateType = "";
+   private String outputFileName = "";
+   private String inputFileName = "";
    
    private PrintWriter prntW;
    
@@ -84,6 +84,7 @@ public class DataHelper
          prntW.println(FHX2FORMAT);
          prntW.println(startYear + " " + numberOfSamples 
                + " " + sampleIDLength);
+         sampleIDInfo = this.sHandle.getArrayOfSampleIDs();
          printSampleIDs();
          prntW.println();
          prntW.flush();
@@ -95,6 +96,7 @@ public class DataHelper
          System.out.println("Error: " + e);
       }
    }
+   
    
    public void setOutputFileName (String fileName)
    {
@@ -127,6 +129,7 @@ public class DataHelper
          prntW.println(FHX2FORMAT);
          prntW.println(startYear + " " + numberOfSamples 
                + " " + sampleIDLength);
+         sampleIDInfo = this.sHandle.getArrayOfSampleIDs();
          printSampleIDs();
          prntW.println();
          prntW.flush();
@@ -147,7 +150,7 @@ public class DataHelper
    /*
    sets all of the site information from an array of strings
    */
-   private void setSiteInformation( String[] siteInfo )
+   public void setSiteInformation( String[] siteInfo )
    {
       int counter = 0;
       nameOfSite = siteInfo[counter++];
@@ -302,7 +305,7 @@ public class DataHelper
    /*
    sets the number of samples
    */
-   private void setNumberOfSamples( int numOfSamples )
+   public void setNumberOfSamples( int numOfSamples )
    {
       numberOfSamples = numOfSamples;
    }
@@ -310,7 +313,7 @@ public class DataHelper
    /*
    sets the start year
    */
-   private void setStartYear( int startYearGui )
+   public void setStartYear( int startYearGui )
    {
       startYear = startYearGui;
    }
@@ -318,7 +321,7 @@ public class DataHelper
    /*
    sets the end year
    */
-   private void setEndYear ( int endYearGui )
+   public void setEndYear ( int endYearGui )
    {
       endYear = endYearGui;
    }
@@ -326,7 +329,7 @@ public class DataHelper
    /*
    sets the sample's length
    */
-   private void setSampleIDLength ( int sampleIDLengthGui )
+   public void setSampleIDLength ( int sampleIDLengthGui )
    {
       sampleIDLength = sampleIDLengthGui;
    }
@@ -339,6 +342,11 @@ public class DataHelper
    public char[][] getSampleIDInfo()
    {
       return sampleIDInfo;
+   }
+   
+   public void setSampleNamesFromArray(char[][] newIDs)
+   {
+      sampleIDInfo = newIDs;
    }
    
    /*
@@ -539,13 +547,27 @@ public class DataHelper
    private void PrintComments()
    {
       int counter = 0;
-      String testString = comments[counter];
-      while (!testString.equalsIgnoreCase("End Comments   :"))
+      String testString;
+      if (comments != null)
       {
-         prntW.println(comments[counter++]);
          testString = comments[counter];
+         while (!testString.equalsIgnoreCase("End Comments   :"))
+         {
+            prntW.println(comments[counter++]);
+            testString = comments[counter];
+         }
+         prntW.println(comments[counter]);
       }
-      prntW.println(comments[counter]);
+      else
+      {
+         prntW.println("Begin comments :");
+         prntW.println("End comments   :");
+      }
+   }
+   
+   public void eraseComments()
+   {
+      comments = null;
    }
    
    private void setInputFileName(String filePath)

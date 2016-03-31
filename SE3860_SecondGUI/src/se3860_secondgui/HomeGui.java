@@ -249,6 +249,14 @@ public class HomeGui extends javax.swing.JFrame
 
       jLabel70.setText("Number of Samples");
 
+      txtFileName.addKeyListener(new java.awt.event.KeyAdapter()
+      {
+         public void keyTyped(java.awt.event.KeyEvent evt)
+         {
+            txtFileNameKeyTyped(evt);
+         }
+      });
+
       jLabel71.setText("New File Name");
 
       javax.swing.GroupLayout dataSettingsPanelLayout = new javax.swing.GroupLayout(dataSettingsPanel);
@@ -1025,6 +1033,13 @@ public class HomeGui extends javax.swing.JFrame
       jMenu1.add(mnuImportData);
 
       mnuSaveFile.setText("Save File");
+      mnuSaveFile.addActionListener(new java.awt.event.ActionListener()
+      {
+         public void actionPerformed(java.awt.event.ActionEvent evt)
+         {
+            mnuSaveFileActionPerformed(evt);
+         }
+      });
       jMenu1.add(mnuSaveFile);
 
       jMenuBar1.add(jMenu1);
@@ -1032,6 +1047,13 @@ public class HomeGui extends javax.swing.JFrame
       jMenu2.setText("Help");
 
       jMenuItem1.setText("FHX2 Website");
+      jMenuItem1.addActionListener(new java.awt.event.ActionListener()
+      {
+         public void actionPerformed(java.awt.event.ActionEvent evt)
+         {
+            jMenuItem1ActionPerformed(evt);
+         }
+      });
       jMenu2.add(jMenuItem1);
 
       jMenuBar1.add(jMenu2);
@@ -1054,13 +1076,19 @@ public class HomeGui extends javax.swing.JFrame
 
    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnSaveActionPerformed
    {//GEN-HEADEREND:event_btnSaveActionPerformed
-      siteInfo = new String[29];
+        updateSiteInfo();
+   }//GEN-LAST:event_btnSaveActionPerformed
+
+   private void updateSiteInfo()
+   {
+            siteInfo = new String[30];
       int count = 0;
       siteInfo[count++] = txtSiteName.getText();
       siteInfo[count++] = txtSiteCode.getText();
       siteInfo[count++] = txtCollectionDate.getText(); 
       siteInfo[count++] = txtCollectors.getText();
       siteInfo[count++] = txtCrossDaters.getText();
+      count++;
       siteInfo[count++] = txtSpeciesName.getText();
       siteInfo[count++] = txtCommonName.getText();
       siteInfo[count++] = txtHabitatType.getText();
@@ -1085,10 +1113,61 @@ public class HomeGui extends javax.swing.JFrame
       siteInfo[count++] = txtAspect.getText();
       siteInfo[count++] = txtAreaSampled.getText();
       siteInfo[count] = txtSubstrateType.getText();
-   }//GEN-LAST:event_btnSaveActionPerformed
-
+      d.setSiteInformation(siteInfo);
+      d.setOutputFileName(fileName);
+      d.printFile();
+   }
    private void btnDeleteAllActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnDeleteAllActionPerformed
    {//GEN-HEADEREND:event_btnDeleteAllActionPerformed
+      deleteAllFields();
+   }//GEN-LAST:event_btnDeleteAllActionPerformed
+
+   private void saveDataSet()
+   {
+        startDate = Integer.parseInt(txtFirstYear.getText());
+        endDate = Integer.parseInt(txtLastYear.getText());
+        sampleNum = Integer.parseInt(txtNumberOfSamples.getText());
+        IDlen = Integer.parseInt(txtSampleIDLength.getText());
+        fileName = txtFileName.getText();
+        // ADDING ROWS TO FIRE HISTORY TABLE
+        String header[] = new String[] { "Year", "Values" };
+        DefaultTableModel dtm = new DefaultTableModel(0, 0);
+        dtm.setColumnIdentifiers(header);
+        fireHistoryTable.setModel(dtm);
+         for( int i = 0; i <= (endDate - startDate); i++ )
+         {
+           dtm.addRow(new String[]{ new Integer(startDate + i).toString(), 
+                                    "" } );
+         }
+
+        // SETUP SAMPLE LIST
+      if (fileLoaded)
+      {
+         setSampleNamesFromFile();
+         d.sHandle.changeSampleNames(d.getSampleIDInfo());
+      }
+      else
+      {
+         deleteAllFields();
+         updateSiteInfo();
+         d.eraseComments();
+         d.sHandle = new SampleHandler(sampleNum, startDate, endDate, IDlen, true, null);
+         Vector dropDownItems = new Vector();
+         for( int i = 0; i < sampleNum; i++)
+            dropDownItems.add( new Integer(i + 1).toString() );
+         final DefaultComboBoxModel model = new DefaultComboBoxModel(dropDownItems);
+         sampleListDropDown.setModel(model);
+         d.setOutputFileName(fileName);
+         d.setNumberOfSamples(sampleNum);
+         d.setStartYear(startDate);
+         d.setEndYear(endDate);
+         d.setSampleIDLength(IDlen);
+         d.printFile();
+      }
+   }
+   
+   private void deleteAllFields()
+   {
       txtSiteName.setText("");
       txtSiteCode.setText("");
       txtCollectionDate.setText("");
@@ -1121,41 +1200,6 @@ public class HomeGui extends javax.swing.JFrame
       txtStartYear.setText("");
       txtEndYear.setText("");
       txtNumSamples.setText("");
-   }//GEN-LAST:event_btnDeleteAllActionPerformed
-
-   private void saveDataSet()
-   {
-        startDate = Integer.parseInt(txtFirstYear.getText());
-        endDate = Integer.parseInt(txtLastYear.getText());
-        sampleNum = Integer.parseInt(txtNumberOfSamples.getText());
-        IDlen = Integer.parseInt(txtSampleIDLength.getText());
-        fileName = txtFileName.getText();
-        // ADDING ROWS TO FIRE HISTORY TABLE
-        String header[] = new String[] { "Year", "Values" };
-        DefaultTableModel dtm = new DefaultTableModel(0, 0);
-        dtm.setColumnIdentifiers(header);
-        fireHistoryTable.setModel(dtm);
-         for( int i = 0; i <= (endDate - startDate); i++ )
-         {
-           dtm.addRow(new String[]{ new Integer(startDate + i).toString(), 
-                                    "" } );
-         }
-
-        // SETUP SAMPLE LIST
-      if (fileLoaded)
-      {
-         setSampleNamesFromFile();
-         d.sHandle.changeSampleNames(d.getSampleIDInfo());
-      }
-      else
-      {
-         d.sHandle = new SampleHandler(sampleNum, startDate, endDate, IDlen, true, null);
-         Vector dropDownItems = new Vector();
-         for( int i = 0; i < sampleNum; i++)
-            dropDownItems.add( new Integer(i + 1).toString() );
-         final DefaultComboBoxModel model = new DefaultComboBoxModel(dropDownItems);
-         sampleListDropDown.setModel(model);  
-      }
    }
    
    private void setSampleNamesFromFile()
@@ -1283,9 +1327,6 @@ public class HomeGui extends javax.swing.JFrame
             saveDataSet();
         } 
         
-        
-
-        
     }//GEN-LAST:event_mnuImportDataActionPerformed
 
    private void btnchangeSampleIDActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnchangeSampleIDActionPerformed
@@ -1319,14 +1360,14 @@ public class HomeGui extends javax.swing.JFrame
    private void modifyBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_modifyBtnActionPerformed
    {//GEN-HEADEREND:event_modifyBtnActionPerformed
       char tempData[];
-      tempData = new char[endDate - startDate];
+      tempData = new char[endDate - startDate + 1];
       String id = (String)sampleListDropDown.getSelectedItem();
       tempData = d.sHandle.getSampleInfo(id);
       String header[] = new String[] { "Year", "Values" };
       DefaultTableModel dtm = new DefaultTableModel(0, 0);
       dtm.setColumnIdentifiers(header);
       fireHistoryTable.setModel(dtm);
-      for( int i = 0; i < (endDate - startDate); i++ )
+      for( int i = 0; i < (endDate - startDate + 1); i++ )
       {
          dtm.addRow(new String[]{ new Integer(startDate + i).toString(), 
                                     "" } );
@@ -1383,16 +1424,42 @@ public class HomeGui extends javax.swing.JFrame
     private void saveDataBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveDataBtnActionPerformed
         char tempData[];
         tempData = new char[fireHistoryTable.getRowCount()];
+        //tempData = new char[fireHistoryTable.getRowCount() + 1];
         int index = sampleListDropDown.getSelectedIndex();
         for( int i = 0; i < fireHistoryTable.getRowCount(); i++)
         {
            String s = fireHistoryTable.getValueAt(i, 1).toString();
            tempData[i] = s.charAt(0);
         }
+        //String last = fireHistoryTable.getValueAt(fireHistoryTable.getRowCount() - 1, 1).toString();
+        //tempData[fireHistoryTable.getRowCount()] = last.charAt(0);
         d.sHandle.changeSampleData(tempData, index);
         d.setOutputFileName(txtFileName.getText());
         d.printFile();
     }//GEN-LAST:event_saveDataBtnActionPerformed
+
+   private void txtFileNameKeyTyped(java.awt.event.KeyEvent evt)//GEN-FIRST:event_txtFileNameKeyTyped
+   {//GEN-HEADEREND:event_txtFileNameKeyTyped
+      fileLoaded = false;
+   }//GEN-LAST:event_txtFileNameKeyTyped
+
+   private void mnuSaveFileActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_mnuSaveFileActionPerformed
+   {//GEN-HEADEREND:event_mnuSaveFileActionPerformed
+      this.saveDataSet();
+      d.printFile();
+   }//GEN-LAST:event_mnuSaveFileActionPerformed
+
+   private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jMenuItem1ActionPerformed
+   {//GEN-HEADEREND:event_jMenuItem1ActionPerformed
+      try
+      {
+         java.awt.Desktop.getDesktop().browse(java.net.URI.create(Constants.FHX2_SITE));
+      }
+      catch (Exception e)
+      {
+         System.out.println("Error: " + e);
+      }
+   }//GEN-LAST:event_jMenuItem1ActionPerformed
 
    /**
     * @param args the command line arguments

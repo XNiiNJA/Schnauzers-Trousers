@@ -21,6 +21,7 @@ import javax.swing.table.TableModel;
  */
 public class HomeGui extends javax.swing.JFrame
 {
+    
    private String[] siteInfo;
    private String fileName;
    int startDate, endDate, sampleNum, IDlen;
@@ -35,6 +36,7 @@ public class HomeGui extends javax.swing.JFrame
         errorlbl2.setVisible(false);
         errorlbl1.setVisible(false);
         errorlbl3.setVisible(false);
+        errorlbl4.setVisible(false);
    }
 
    /**
@@ -64,6 +66,7 @@ public class HomeGui extends javax.swing.JFrame
         jLabel70 = new javax.swing.JLabel();
         txtFileName = new javax.swing.JTextField();
         jLabel71 = new javax.swing.JLabel();
+        errorlbl4 = new javax.swing.JLabel();
         siteInfoPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtSiteName = new javax.swing.JTextField();
@@ -225,7 +228,7 @@ public class HomeGui extends javax.swing.JFrame
                 .addComponent(jLabel72)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(700, Short.MAX_VALUE))
+                .addContainerGap(717, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Home", homePanel);
@@ -257,6 +260,9 @@ public class HomeGui extends javax.swing.JFrame
 
         jLabel71.setText("New File Name");
 
+        errorlbl4.setForeground(new java.awt.Color(255, 51, 51));
+        errorlbl4.setText("Data Incomplete: Please enter all fields before continuing");
+
         javax.swing.GroupLayout dataSettingsPanelLayout = new javax.swing.GroupLayout(dataSettingsPanel);
         dataSettingsPanel.setLayout(dataSettingsPanelLayout);
         dataSettingsPanelLayout.setHorizontalGroup(
@@ -279,7 +285,8 @@ public class HomeGui extends javax.swing.JFrame
                             .addGroup(dataSettingsPanelLayout.createSequentialGroup()
                                 .addComponent(saveDataSetBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(errorlbl4))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -310,7 +317,9 @@ public class HomeGui extends javax.swing.JFrame
                 .addGroup(dataSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(saveDataSetBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(285, 285, 285))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(errorlbl4)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Data Settings ", dataSettingsPanel);
@@ -834,7 +843,7 @@ public class HomeGui extends javax.swing.JFrame
                                 .addComponent(jLabel37)
                                 .addGap(5, 5, 5)
                                 .addComponent(txtCounty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
                         .addComponent(btnSave)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(resetDataFieldsBtn)
@@ -923,37 +932,35 @@ public class HomeGui extends javax.swing.JFrame
         fireHistoryPanelLayout.setHorizontalGroup(
             fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fireHistoryPanelLayout.createSequentialGroup()
-                .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(errorlbl2, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fireHistoryPanelLayout.createSequentialGroup()
+                            .addGap(152, 152, 152)
+                            .addComponent(maxSamplesize)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(errorlbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(fireHistoryPanelLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(jLabel27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(errorlbl3)
+                            .addComponent(txtSampleId, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(btnchangeSampleID)
+                        .addGap(54, 54, 54)
+                        .addComponent(sampleListDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(modifyBtn))
+                    .addGroup(fireHistoryPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(fireHistoryPanelLayout.createSequentialGroup()
-                                .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(fireHistoryPanelLayout.createSequentialGroup()
-                                        .addComponent(jLabel27)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(errorlbl3)
-                                            .addComponent(txtSampleId, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnchangeSampleID)
-                                        .addGap(54, 54, 54)
-                                        .addComponent(sampleListDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(14, 14, 14))
-                                    .addGroup(fireHistoryPanelLayout.createSequentialGroup()
-                                        .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(errorlbl2)
-                                            .addGroup(fireHistoryPanelLayout.createSequentialGroup()
-                                                .addGap(152, 152, 152)
-                                                .addComponent(maxSamplesize)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(errorlbl1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(49, 49, 49)
-                                .addComponent(modifyBtn))
+                                .addGap(36, 36, 36)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(fireHistoryPanelLayout.createSequentialGroup()
-                                .addGap(295, 295, 295)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel28)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -964,41 +971,34 @@ public class HomeGui extends javax.swing.JFrame
                                 .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel65)
                                     .addComponent(jLabel66)
-                                    .addComponent(jLabel75)))))
-                    .addGroup(fireHistoryPanelLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(740, 740, 740)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel75)))))))
         );
         fireHistoryPanelLayout.setVerticalGroup(
             fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(fireHistoryPanelLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27)
+                    .addComponent(txtSampleId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnchangeSampleID)
+                    .addComponent(sampleListDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modifyBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(errorlbl2)
+                    .addComponent(errorlbl3))
                 .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(fireHistoryPanelLayout.createSequentialGroup()
-                        .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel27)
-                            .addComponent(txtSampleId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnchangeSampleID)
-                            .addComponent(sampleListDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(modifyBtn))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(errorlbl2)
-                            .addComponent(errorlbl3))
-                        .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(fireHistoryPanelLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(errorlbl1))
-                            .addGroup(fireHistoryPanelLayout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(maxSamplesize))))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(errorlbl1))
+                    .addGroup(fireHistoryPanelLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(maxSamplesize)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(fireHistoryPanelLayout.createSequentialGroup()
-                        .addGap(94, 94, 94)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(fireHistoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel28)
                             .addComponent(cmbNewValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1012,7 +1012,7 @@ public class HomeGui extends javax.swing.JFrame
                             .addComponent(saveDataBtn)
                             .addComponent(jLabel75)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(243, Short.MAX_VALUE))
+                .addContainerGap(260, Short.MAX_VALUE))
         );
 
         errorlbl2.getAccessibleContext().setAccessibleName("errorlbl2");
@@ -1211,10 +1211,33 @@ public class HomeGui extends javax.swing.JFrame
       sampleListDropDown.setModel(model);
    }
    
+   
+   //This function checks to make sure all neccesary data is entered before 
+   //starting a new sample set
+   boolean testCompleteData()
+   {
+       if(!"".equals(txtFirstYear.getText()) ||
+               !"".equals(txtLastYear.getText()) ||
+               !"".equals(txtNumberOfSamples.getText()) ||
+               !"".equals(txtSampleIDLength.getText()) ||
+               !"".equals(txtFileName.getText()))
+           return true;
+       return false;
+   }
+   
+   //this function saves data set to a file
    private void saveDataSetBtn1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_saveDataSetBtn1ActionPerformed
    {//GEN-HEADEREND:event_saveDataSetBtn1ActionPerformed
-      saveDataSet();
-      maxSamplesize.setText("Max Sample ID Length: " + IDlen);
+      if(testCompleteData())
+      {
+        saveDataSet();
+        maxSamplesize.setText("Max Sample ID Length: " + IDlen);
+        errorlbl4.setVisible(false);
+      }
+      else
+      {
+          errorlbl4.setVisible(true);
+      }
    }//GEN-LAST:event_saveDataSetBtn1ActionPerformed
 
     private void mnuImportDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuImportDataActionPerformed
@@ -1505,6 +1528,7 @@ public class HomeGui extends javax.swing.JFrame
     private javax.swing.JLabel errorlbl1;
     private javax.swing.JLabel errorlbl2;
     private javax.swing.JLabel errorlbl3;
+    private javax.swing.JLabel errorlbl4;
     private javax.swing.JPanel fireHistoryPanel;
     private javax.swing.JTable fireHistoryTable;
     private javax.swing.JPanel homePanel;

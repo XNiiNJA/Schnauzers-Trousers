@@ -1,0 +1,50 @@
+Name of site   : Testing
+Site code      : Testing
+Collection date: Set
+Collectors     : Testing
+Crossdaters    : New
+Number samples : 5
+Species name   : New
+Common name    : Data
+Habitat type   : Data
+Country        : New
+State          : New
+County         : New
+Park/Monument  : Testing
+National Forest: Testing
+Ranger district: Testing
+Township       : New
+Range          : Data
+Section        : Data
+Quarter section: Data
+UTM easting    : Set
+UTM northing   : Set
+Latitude       : Data
+Longitude      : Set
+Topographic map: Testing
+Lowest elev    : Set
+Highest elev   : Set
+Slope          : Set
+Aspect         : Set
+Area sampled   : Data
+Substrate type : Data
+Begin comments :
+End comments   :
+
+FHX2 FORMAT
+1250 5 3
+12T45
+  e  
+  s  
+
+].}.. 1250
+].}.. 1251
+].}.. 1252
+].}.. 1253
+].}.. 1254
+].}.. 1255
+].}.. 1256
+].}.. 1257
+].}.. 1258
+].}.. 1259
+].}.. 1260

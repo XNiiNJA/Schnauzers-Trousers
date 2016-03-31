@@ -4,7 +4,6 @@
 
 package se3860_secondgui;
 
-import java.awt.List;
 import java.util.ArrayList;
 
 /**
@@ -154,11 +153,17 @@ public class SampleHandler
         return null;
    }
    
+   /*
+      changes the sample data to the new given data at a given index
+   */
    public void changeSampleData( char data[], int index )
    {
       sampleList.get(index).setData(data);
    }
    
+   /*
+      returns the 2d char [] of sample IDs
+   */
    public char[][] getArrayOfSampleIDs()
    {
       char[][] returnArray = new char[idLength][numSamples];

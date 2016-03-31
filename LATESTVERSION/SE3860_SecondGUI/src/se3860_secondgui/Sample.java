@@ -74,6 +74,9 @@ public class Sample
        return "Sample: " + id;
    }
    
+   /*
+      set the data to a given char[]
+   */
    public void setData(char info[])
    {
       data = info;

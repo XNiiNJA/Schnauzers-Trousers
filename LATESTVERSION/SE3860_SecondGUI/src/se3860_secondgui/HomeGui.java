@@ -1345,12 +1345,18 @@ public class HomeGui extends javax.swing.JFrame
    */
    private void btnFillFiftyActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnFillFiftyActionPerformed
    {//GEN-HEADEREND:event_btnFillFiftyActionPerformed
-      String value = new String(cmbNewValue.getSelectedItem().toString());
-      value = value.substring(value.lastIndexOf('(') + 1);
-      value = value.substring(1, 2);
-      int yearsToEdit[] = fireHistoryTable.getSelectedRows();
-      for( int i = yearsToEdit[0]; i <= yearsToEdit[yearsToEdit.length - 1]; i++)
-         fireHistoryTable.setValueAt( value, i, 1 );
+      try{
+         String value = new String(cmbNewValue.getSelectedItem().toString());
+         value = value.substring(value.lastIndexOf('(') + 1);
+         value = value.substring(1, 2);
+         int yearsToEdit[] = fireHistoryTable.getSelectedRows();
+         for( int i = yearsToEdit[0]; i <= yearsToEdit[yearsToEdit.length - 1]; i++)
+            fireHistoryTable.setValueAt( value, i, 1 );
+      }
+      catch(Exception e)
+      {
+         System.out.println("Create a data set or use an existing one!");
+      }
    }//GEN-LAST:event_btnFillFiftyActionPerformed
 
    /*
@@ -1425,30 +1431,35 @@ public class HomeGui extends javax.swing.JFrame
     */
    private void btnchangeSampleIDActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_btnchangeSampleIDActionPerformed
    {//GEN-HEADEREND:event_btnchangeSampleIDActionPerformed
-        if( txtSampleId.getText().length() <= IDlen )
-        {   
-           String Id = txtSampleId.getText();
-           String oldString = (String) sampleListDropDown.getSelectedItem();
-           int errorCode = d.sHandle.changeId(Id, (String)sampleListDropDown.getSelectedItem());
-           if(errorCode == 0)
-               errorlbl1.setVisible(true);
-           else if(errorCode == -1)
-               errorlbl2.setVisible(true);
-           else
-           {
-               errorlbl2.setVisible(false);
-               errorlbl1.setVisible(false);
-               errorlbl3.setVisible(false);
-               sampleListDropDown.removeAllItems();
-               d.sHandle.changeId(Id, oldString);
-               String [] samples = d.sHandle.refreshIdnames();
-               for(int i = 0; i < samples.length; i++)
-                   sampleListDropDown.addItem(samples[i]);
-           }
-        }
-        else
-           errorlbl3.setVisible(true);
-
+      try{  
+         if( txtSampleId.getText().length() <= IDlen )
+         {   
+            String Id = txtSampleId.getText();
+            String oldString = (String) sampleListDropDown.getSelectedItem();
+            int errorCode = d.sHandle.changeId(Id, (String)sampleListDropDown.getSelectedItem());
+            if(errorCode == 0)
+                errorlbl1.setVisible(true);
+            else if(errorCode == -1)
+                errorlbl2.setVisible(true);
+            else
+            {
+                errorlbl2.setVisible(false);
+                errorlbl1.setVisible(false);
+                errorlbl3.setVisible(false);
+                sampleListDropDown.removeAllItems();
+                d.sHandle.changeId(Id, oldString);
+                String [] samples = d.sHandle.refreshIdnames();
+                for(int i = 0; i < samples.length; i++)
+                    sampleListDropDown.addItem(samples[i]);
+            }
+         }
+         else
+            errorlbl3.setVisible(true);
+      }
+      catch(Exception e)
+      {
+         System.out.println("Error: " + e);
+      }
    }//GEN-LAST:event_btnchangeSampleIDActionPerformed
 
    /*
@@ -1457,19 +1468,25 @@ public class HomeGui extends javax.swing.JFrame
    */
    private void modifyBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_modifyBtnActionPerformed
    {//GEN-HEADEREND:event_modifyBtnActionPerformed
-      char tempData[];
-      tempData = new char[endDate - startDate + 1];
-      String id = (String)sampleListDropDown.getSelectedItem();
-      tempData = d.sHandle.getSampleInfo(id);
-      String header[] = new String[] { "Year", "Values" };
-      DefaultTableModel dtm = new DefaultTableModel(0, 0);
-      dtm.setColumnIdentifiers(header);
-      fireHistoryTable.setModel(dtm);
-      for( int i = 0; i < (endDate - startDate + 1); i++ )
+      try{
+         char tempData[];
+         tempData = new char[endDate - startDate + 1];
+         String id = (String)sampleListDropDown.getSelectedItem();
+         tempData = d.sHandle.getSampleInfo(id);
+         String header[] = new String[] { "Year", "Values" };
+         DefaultTableModel dtm = new DefaultTableModel(0, 0);
+         dtm.setColumnIdentifiers(header);
+         fireHistoryTable.setModel(dtm);
+         for( int i = 0; i < (endDate - startDate + 1); i++ )
+         {
+            dtm.addRow(new String[]{ new Integer(startDate + i).toString(), 
+                                       "" } );
+            fireHistoryTable.setValueAt(tempData[i], i, 1);
+         }
+      }
+      catch(Exception e)
       {
-         dtm.addRow(new String[]{ new Integer(startDate + i).toString(), 
-                                    "" } );
-         fireHistoryTable.setValueAt(tempData[i], i, 1);
+         System.out.println("Create a data set or use an existing one!");
       }
       
       
@@ -1526,20 +1543,26 @@ public class HomeGui extends javax.swing.JFrame
       saves the fire history data table and prints it to file
    */
     private void saveDataBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveDataBtnActionPerformed
-        char tempData[];
-        tempData = new char[fireHistoryTable.getRowCount()];
-        //tempData = new char[fireHistoryTable.getRowCount() + 1];
-        int index = sampleListDropDown.getSelectedIndex();
-        for( int i = 0; i < fireHistoryTable.getRowCount(); i++)
-        {
-           String s = fireHistoryTable.getValueAt(i, 1).toString();
-           tempData[i] = s.charAt(0);
+        try{
+           char tempData[];
+           tempData = new char[fireHistoryTable.getRowCount()];
+           //tempData = new char[fireHistoryTable.getRowCount() + 1];
+           int index = sampleListDropDown.getSelectedIndex();
+           for( int i = 0; i < fireHistoryTable.getRowCount(); i++)
+           {
+              String s = fireHistoryTable.getValueAt(i, 1).toString();
+              tempData[i] = s.charAt(0);
+           }
+           //String last = fireHistoryTable.getValueAt(fireHistoryTable.getRowCount() - 1, 1).toString();
+           //tempData[fireHistoryTable.getRowCount()] = last.charAt(0);
+           d.sHandle.changeSampleData(tempData, index);
+           d.setOutputFileName(txtFileName.getText());
+           d.printFile();
         }
-        //String last = fireHistoryTable.getValueAt(fireHistoryTable.getRowCount() - 1, 1).toString();
-        //tempData[fireHistoryTable.getRowCount()] = last.charAt(0);
-        d.sHandle.changeSampleData(tempData, index);
-        d.setOutputFileName(txtFileName.getText());
-        d.printFile();
+        catch(Exception e)
+        {
+           System.out.println("Create a data set or use an existing one!");
+        }
     }//GEN-LAST:event_saveDataBtnActionPerformed
 
     /*

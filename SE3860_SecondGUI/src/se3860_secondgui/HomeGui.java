@@ -59,7 +59,6 @@ public class HomeGui extends javax.swing.JFrame
         txtSampleIDLength = new javax.swing.JTextField();
         txtLastYear = new javax.swing.JTextField();
         txtNumberOfSamples = new javax.swing.JTextField();
-        cancelBtn = new javax.swing.JButton();
         saveDataSetBtn1 = new javax.swing.JButton();
         jLabel68 = new javax.swing.JLabel();
         jLabel69 = new javax.swing.JLabel();
@@ -237,8 +236,6 @@ public class HomeGui extends javax.swing.JFrame
 
         jLabel67.setText("Sample ID length");
 
-        cancelBtn.setText("Cancel");
-
         saveDataSetBtn1.setText("Create Data Set");
         saveDataSetBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -282,10 +279,7 @@ public class HomeGui extends javax.swing.JFrame
                             .addComponent(jLabel71)
                             .addComponent(jLabel67)
                             .addComponent(jLabel70)
-                            .addGroup(dataSettingsPanelLayout.createSequentialGroup()
-                                .addComponent(saveDataSetBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(saveDataSetBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(errorlbl4))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -314,9 +308,7 @@ public class HomeGui extends javax.swing.JFrame
                 .addGap(3, 3, 3)
                 .addComponent(txtFileName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(dataSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveDataSetBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cancelBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(saveDataSetBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorlbl4)
                 .addContainerGap())
@@ -1159,6 +1151,7 @@ public class HomeGui extends javax.swing.JFrame
       }
    }
    
+   //deletes info in all fields on the sample data set screen
    private void deleteAllFields()
    {
       txtSiteName.setText("");
@@ -1216,10 +1209,10 @@ public class HomeGui extends javax.swing.JFrame
    //starting a new sample set
    boolean testCompleteData()
    {
-       if(!"".equals(txtFirstYear.getText()) ||
-               !"".equals(txtLastYear.getText()) ||
-               !"".equals(txtNumberOfSamples.getText()) ||
-               !"".equals(txtSampleIDLength.getText()) ||
+       if(!"".equals(txtFirstYear.getText()) &&
+               !"".equals(txtLastYear.getText()) &&
+               !"".equals(txtNumberOfSamples.getText()) &&
+               !"".equals(txtSampleIDLength.getText()) &&
                !"".equals(txtFileName.getText()))
            return true;
        return false;
@@ -1522,7 +1515,6 @@ public class HomeGui extends javax.swing.JFrame
     private javax.swing.JButton btnFillFifty;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnchangeSampleID;
-    private javax.swing.JButton cancelBtn;
     private javax.swing.JComboBox cmbNewValue;
     private javax.swing.JPanel dataSettingsPanel;
     private javax.swing.JLabel errorlbl1;

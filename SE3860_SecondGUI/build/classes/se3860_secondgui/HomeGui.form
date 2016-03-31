@@ -179,11 +179,7 @@
                                   <Component id="jLabel71" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel67" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel70" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="saveDataSetBtn1" min="-2" pref="116" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="cancelBtn" min="-2" pref="90" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="saveDataSetBtn1" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
                                   <Component id="errorlbl4" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -217,10 +213,7 @@
                       <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                       <Component id="txtFileName" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="saveDataSetBtn1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                          <Component id="cancelBtn" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="saveDataSetBtn1" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="errorlbl4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -241,11 +234,6 @@
             <Component class="javax.swing.JTextField" name="txtLastYear">
             </Component>
             <Component class="javax.swing.JTextField" name="txtNumberOfSamples">
-            </Component>
-            <Component class="javax.swing.JButton" name="cancelBtn">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Cancel"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="saveDataSetBtn1">
               <Properties>
